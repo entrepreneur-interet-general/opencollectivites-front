@@ -1,28 +1,31 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Header
+      service_name="Open Collectivités"
+      entity="Ministère <br />de la Cohésion <br />des territoires <br />et des
+              Relations <br />avec les collectivités <br />territoriales"
+    />
+    <TitleSearch />
+    <HomeFeed />
+    <HomeCategories />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Header from "./components/france-designsystem/Header";
+import TitleSearch from "./components/blocks/TitleSearch";
+import HomeFeed from "./components/blocks/HomeFeed";
+import HomeCategories from "./components/blocks/HomeCategories";
 export default {
-  name: 'App',
+  name: "app",
   components: {
-    HelloWorld
-  }
-}
+    Header,
+    TitleSearch,
+    HomeFeed,
+    HomeCategories,
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
