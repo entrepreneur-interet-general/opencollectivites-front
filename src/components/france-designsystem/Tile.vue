@@ -1,5 +1,5 @@
 <template>
-  <div class="rf-tile" :class="tile_data.horizontal && 'rf-tile--horizontal'">
+  <div class="rf-tile" :class="horizontal && 'rf-tile--horizontal'">
     <div class="rf-tile__img">
       <img
         :src="tile_data.image.src"
@@ -18,7 +18,19 @@
 <script>
 export default {
   name: "Tile",
-  props: { tile_data: {} },
+  props: {
+    tile_data: {
+      type: Object,
+      required: true,
+      default() {
+        return {};
+      },
+    },
+    horizontal: {
+      type: Boolean,
+      default: false,
+    },
+  },
 };
 </script>
 

@@ -8,12 +8,12 @@
         thématique
       </h2>
       <div id="home-categories">
-        <TileIcon
-          v-for="tile in tiles"
-          :tile_data="tile"
-          :key="tile.title"
-          class="home-tile"
-        />
+        <div v-for="(tile, index) in tiles" :key="index" class="rf-col-2">
+          <div>
+            <TileIcon :tile_data="tile" class="home-tile" />
+          </div>
+          <div class="rf-col-1"></div>
+        </div>
       </div>
     </div>
   </div>

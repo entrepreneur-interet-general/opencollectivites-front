@@ -4,9 +4,7 @@
       <div class="rf-header__body">
         <div class="rf-header__brand">
           <a class="rf-logo" href="#" :title="entity">
-            <span class="rf-logo__title">
-              <span v-html="entity"></span>
-            </span>
+            <span class="rf-logo__title" v-html="entity"></span>
           </a>
         </div>
         <div class="rf-header__navbar">

@@ -8,7 +8,7 @@
         v-for="doc in synthesisDocs"
         :key="doc.title"
       >
-        <Card :card_data="doc" />
+        <Card :card_data="doc" :noArrow="true" />
       </div>
     </div>
 
@@ -94,7 +94,6 @@ export default {
           url: "https://test.com",
           description: "",
           detail: "Publication | 8 septembre 2020 • DGCL",
-          noArrow: true,
         },
         {
           title: "Finances locales",

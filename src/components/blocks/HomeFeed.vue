@@ -4,7 +4,8 @@
       <div class="rf-col-8">
         <StudiesFeed />
       </div>
-      <div class="rf-col-4">
+      <div class="rf-col-1"></div>
+      <div class="rf-col-3">
         <NewsFeed />
       </div>
     </div>

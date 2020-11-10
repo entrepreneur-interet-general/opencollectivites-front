@@ -2,8 +2,8 @@
   <div
     class="rf-card"
     :class="{
-      'rf-card--no-arrow': card_data.noArrow,
-      'rf-card--horizontal': card_data.horizontal,
+      'rf-card--no-arrow': noArrow,
+      'rf-card--horizontal': horizontal,
     }"
   >
     <div class="rf-card__img" v-if="card_data.image">
@@ -28,7 +28,23 @@
 <script>
 export default {
   name: "Card",
-  props: { card_data: {} },
+  props: {
+    card_data: {
+      type: Object,
+      required: true,
+      default() {
+        return {};
+      },
+    },
+    noArrow: {
+      type: Boolean,
+      default: true,
+    },
+    horizontal: {
+      type: Boolean,
+      default: false,
+    },
+  },
 };
 </script>
 
