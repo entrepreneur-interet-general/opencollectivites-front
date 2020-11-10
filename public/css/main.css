@@ -1,0 +1,34 @@
+.rf-header {
+    box-shadow: none;
+    border-bottom: 1.5px solid var(--g400);
+}
+
+.rf-bg--alt {
+    background-color: var(--g200);
+}
+
+.two-col {
+    column-count: 2;
+}
+
+.feedcard {
+    min-width: 320px;
+    padding: 10px;
+}
+
+.feed-more-link {
+    text-align: right;
+}
+.feed-more-link a {
+    font-size: 1.3rem;
+}
+
+#home-categories {
+    display: flex;
+}
+
+.home-tile {
+    width: 162px;
+    height: 286px;
+    margin: 10px;
+}
