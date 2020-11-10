@@ -21,7 +21,7 @@ describe('Tile.vue', () => {
       expect(wrapper.find('.rf-tile__title').text()).toMatch(propsData.tile_data.title)
     })
 
-    it("links to the card's url", () => {
+    it("links to the tile's url", () => {
       expect(wrapper.find('.rf-tile__link').attributes('href')).toBe(propsData.tile_data.url)
     })
 
@@ -38,9 +38,9 @@ describe('Tile.vue', () => {
     })
   })
 
-  describe('Card options', () => {
+  describe('Tile options', () => {
     it("is vertical by default", () => {
-      expect(wrapper.find('.rf-tile').classes()).toEqual(expect.not.arrayContaining(['rf-card--horizontal']))
+      expect(wrapper.find('.rf-tile').classes()).toEqual(expect.not.arrayContaining(['rf-tile--horizontal']))
     })
   })
 })
