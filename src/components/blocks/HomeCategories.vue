@@ -10,7 +10,7 @@
       <div id="home-categories">
         <div v-for="(tile, index) in tiles" :key="index" class="rf-col-2">
           <div>
-            <TileIcon :tile_data="tile" class="home-tile" />
+            <Tile :tile_data="tile" class="home-tile" />
           </div>
           <div class="rf-col-1"></div>
         </div>
@@ -20,33 +20,74 @@
 </template>
 
 <script>
-import TileIcon from "../france-designsystem-custom/TileIcon";
+import Tile from "../france-designsystem/Tile";
 export default {
   name: "HomeCategories",
-  components: { TileIcon },
+  components: { Tile },
   data() {
     return {
       tiles: [
         {
           title: "Aides & dotations",
-          remixicon: {
-            name: "calculator",
+          image: {
+            src: "img/remixicon/calculator-line.svg",
+            alt: "Aides & dotations",
           },
           url: "https://test.com",
         },
         {
           title: "Culture & éducation",
           image: {
-            src: "/img/placeholder-80-80.png",
-            alt: "placeholder kitten",
+            src: "img/remixicon/keynote-line.svg",
+            alt: "Culture & éducation",
           },
           url: "https://test.com",
         },
         {
-          title: "Développement durable",
+          title: "Emploi & Fonction publique territoriale",
           image: {
-            src: "/img/placeholder-80-80.png",
-            alt: "placeholder kitten",
+            src: "/img/remixicon/briefcase-4-line.svg",
+            alt: "Emploi & Fonction publique territoriale",
+          },
+          url: "https://test.com",
+        },
+        {
+          title: "Finances & Fiscalité",
+          image: {
+            src: "/img/remixicon/percent-line.svg",
+            alt: "Finances & Fiscalité",
+          },
+          url: "https://test.com",
+        },
+        {
+          title: "Géographie & Intercommunalités",
+          image: {
+            src: "/img/remixicon/map-2-line.svg",
+            alt: "Géographie & Intercommunalités",
+          },
+          url: "https://test.com",
+        },
+        {
+          title: "Parité",
+          image: {
+            src: "/img/parite.svg",
+            alt: "Parité",
+          },
+          url: "https://test.com",
+        },
+        {
+          title: "Santé & Social",
+          image: {
+            src: "/img/remixicon/hospital-line.svg",
+            alt: "Santé & Social",
+          },
+          url: "https://test.com",
+        },
+        {
+          title: "Sécurité",
+          image: {
+            src: "/img/remixicon/shield-line.svg",
+            alt: "Sécurité",
           },
           url: "https://test.com",
         },
@@ -55,6 +96,5 @@ export default {
   },
 };
 </script>
-
 <style scoped>
 </style>

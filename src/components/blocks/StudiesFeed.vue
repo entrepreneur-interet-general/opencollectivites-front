@@ -90,7 +90,10 @@ export default {
       synthesisDocs: [
         {
           title: "Les collectivités locales en chiffres",
-          image: { src: "/img/placeholder.jpg", alt: "placeholder kitten" },
+          image: {
+            src: "/img/remixicon/bubble-chart-line.svg",
+            alt: "Les collectivités locales en chiffres",
+          },
           url: "https://test.com",
           description: "",
           detail: "Publication | 8 septembre 2020 • DGCL",
@@ -136,7 +139,10 @@ export default {
       communesDocs: [
         {
           title: "Les comptes 2016-2019 des communes : données agrégées",
-          image: { src: "/img/placeholder.jpg", alt: "placeholder kitten" },
+          image: {
+            src: "/img/remixicon/calculator-line.svg",
+            alt: "Les comptes 2016-2019 des communes : données agrégées",
+          },
           url: "https://test.com",
           description: "",
           detail: "Publication | 7 juillet 2020 • DGCL",
