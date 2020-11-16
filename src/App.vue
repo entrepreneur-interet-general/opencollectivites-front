@@ -2,8 +2,9 @@
   <div id="app">
     <Header
       service_name="Open Collectivités"
-      entity="Ministère <br />de la Cohésion <br />des territoires <br />et des
+      brand_name="Ministère <br />de la Cohésion <br />des territoires <br />et des
               Relations <br />avec les collectivités <br />territoriales"
+      :tools="tools"
     />
     <TitleSearch />
     <HomeFeed />
@@ -23,6 +24,13 @@ export default {
     TitleSearch,
     HomeFeed,
     HomeCategories,
+  },
+  data() {
+    return {
+      tools: {
+        dark_mode: true,
+      },
+    };
   },
 };
 </script>
