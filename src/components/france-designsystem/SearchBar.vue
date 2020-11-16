@@ -1,8 +1,8 @@
 <template>
   <div
     class="rf-search-bar"
-    :class="{ 'rf-search-bar--lg': large }"
-    id="search-input"
+    :class="{ 'rf-search-bar--lg': isLarge }"
+    :id="[isLarge ? 'search-input--lg' : 'search-input']"
   >
     <label class="rf-label" for="search-input-input">
       {{ label }}
@@ -11,10 +11,14 @@
       class="rf-input"
       :placeholder="placeholder"
       type="search"
-      id="search-input-input"
-      name="search-input-input"
+      :id="[isLarge ? 'search-input--lg-input' : 'search-input-input']"
+      :name="[isLarge ? 'search-input--lg-input' : 'search-input-input']"
     />
-    <button class="rf-btn" title="Rechercher">
+    <button
+      class="rf-btn"
+      :class="{ 'rf-btn--lg': isLarge }"
+      title="Rechercher"
+    >
       <span> Rechercher </span>
     </button>
   </div>
@@ -22,7 +26,7 @@
 
 <script>
 export default {
-  name: "Header",
+  name: "SearchBar",
   props: {
     label: {
       type: String,
@@ -32,7 +36,7 @@ export default {
       type: String,
       default: "Rechercher",
     },
-    large: {
+    isLarge: {
       type: Boolean,
       default: false,
     },
