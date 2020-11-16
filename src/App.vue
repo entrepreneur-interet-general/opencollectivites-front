@@ -9,6 +9,7 @@
     <TitleSearch />
     <HomeFeed />
     <HomeCategories />
+    <Footer brand_name="République<br />française" />
   </div>
 </template>
 
@@ -17,6 +18,8 @@ import Header from "./components/france-designsystem/Header";
 import TitleSearch from "./components/blocks/TitleSearch";
 import HomeFeed from "./components/blocks/HomeFeed";
 import HomeCategories from "./components/blocks/HomeCategories";
+import Footer from "./components/france-designsystem/Footer";
+
 export default {
   name: "app",
   components: {
@@ -24,6 +27,7 @@ export default {
     TitleSearch,
     HomeFeed,
     HomeCategories,
+    Footer,
   },
   data() {
     return {

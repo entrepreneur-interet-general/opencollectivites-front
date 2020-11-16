@@ -1,5 +1,6 @@
 import { shallowMount } from '@vue/test-utils'
 import Header from '@/components/france-designsystem/Header.vue'
+import Brand from '@/components/france-designsystem/Brand.vue'
 
 let wrapper = null
 
@@ -21,8 +22,8 @@ afterEach(() => wrapper.destroy())
 
 describe('Header.vue', () => {
     describe('Header content', () => {
-        it("displays the mandatory brand name", () => {
-            expect(wrapper.find('.rf-logo__title').html()).toBe('<span class="rf-logo__title">RÉPUBLIQUE<br>FRANÇAISE</span>')
+        it("calls the mandatory brand component with the Header class", () => {
+            expect(wrapper.findComponent(Brand).props("isHeader")).toBe(true)
         })
 
         it("displays an optional service name", () => {

@@ -2,11 +2,7 @@
   <header class="rf-header">
     <div class="rf-container">
       <div class="rf-header__body">
-        <div class="rf-header__brand">
-          <a class="rf-logo" href="#" :title="brand_name">
-            <span class="rf-logo__title" v-html="brand_name"></span>
-          </a>
-        </div>
+        <Brand :brand_name="brand_name" />
         <div class="rf-header__navbar" v-if="service_name">
           <div class="rf-service">
             <a class="rf-service__title" href="#" :title="service_name">
@@ -71,6 +67,8 @@
 </template>
 
 <script>
+import Brand from "./Brand";
+
 export default {
   name: "Header",
   props: {
@@ -86,6 +84,9 @@ export default {
         return {};
       },
     },
+  },
+  components: {
+    Brand,
   },
 };
 </script>
