@@ -9,10 +9,7 @@
       </h2>
       <div id="home-categories">
         <div v-for="(tile, index) in tiles" :key="index" class="rf-col-2">
-          <div>
-            <Tile :tile_data="tile" class="home-tile" />
-          </div>
-          <div class="rf-col-1"></div>
+          <Tile :tile_data="tile" class="home-tile" />
         </div>
       </div>
     </div>
@@ -60,7 +57,7 @@ export default {
           url: "https://test.com",
         },
         {
-          title: "Géographie & Intercommunalités",
+          title: "Géographie & Intercom­munalités", // Il y a une marque de césure (U+00AD SOFT HYPHEN) entre les deux "m".
           image: {
             src: "/img/remixicon/map-2-line.svg",
             alt: "Géographie & Intercommunalités",

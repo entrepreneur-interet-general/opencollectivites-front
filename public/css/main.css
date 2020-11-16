@@ -25,8 +25,19 @@
 
 #home-categories {
     display: flex;
+    flex-wrap: wrap;
 }
 
+#home-categories .rf-col-2 {
+    margin-bottom: 3rem;
+}
 .home-tile {
-    margin: 0 8%;
+    margin: 0 1rem;
+    height: 100%;
+    hyphens: auto;
+}
+
+.rf-tile__link {
+    text-align: center;
+    display: inline-block;
 }
