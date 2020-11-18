@@ -7,7 +7,11 @@
         Trouver les études, statistiques et outils locaux utiles à vos prises de
         décision, recherches ou au débat public
       </h1>
-      <p>Commune, EPCI, département, région</p>
+
+      <Select
+        :select_data="select_data"
+        defaultOption="Taper les premières lettres de la collectivité recherchée"
+      />
 
       <v-super-select
         label="Commune, EPCI, département, région"
@@ -15,29 +19,13 @@
         inputWidth="100%"
         placeholder="Taper les premières lettres de la collectivité recherchée"
       ></v-super-select>
-
-      <div class="rf-search-bar" id="search-input">
-        <label for="search-input-input" class="rf-label">
-          Commune, EPCI, département, région
-        </label>
-
-        <input
-          class="rf-input"
-          placeholder="Taper les premières lettres de la collectivité recherchée"
-          type="search"
-          id="search-input-input"
-          name="search-input-input"
-        />
-        <button class="rf-btn" title="Rechercher">
-          <span> Rechercher </span>
-        </button>
-      </div>
     </div>
   </div>
 </template>
 
 <script>
 import VSuperSelect from "v-super-select";
+import Select from "@/components/france-designsystem/Select.vue";
 export default {
   name: "TitleSearch",
   data() {
@@ -50,7 +38,7 @@ export default {
           items: [
             {
               text: "Bourgogne-Franche-Comté",
-              value: "1",
+              value: "200053726",
             },
           ],
         },
@@ -59,7 +47,7 @@ export default {
           items: [
             {
               text: "Bouches-du-Rhône",
-              value: "4",
+              value: "221300015",
             },
           ],
         },
@@ -68,23 +56,23 @@ export default {
           items: [
             {
               text: "CA du Bassin de Bourg-en-Bresse",
-              value: "5",
+              value: "200071751",
             },
             {
               text: "CC du Bocage Bourbonnais",
-              value: "6",
+              value: "200071496",
             },
             {
               text: "CC des Portes du Luxembourg",
-              value: "7",
+              value: "240800847",
             },
             {
               text: "CC Normandie-Cabourg-Pays d'Auge",
-              value: "8",
+              value: "200065563",
             },
             {
               text: "CA Bourges Plus",
-              value: "9",
+              value: "241800507",
             },
           ],
         },
@@ -93,34 +81,43 @@ export default {
           items: [
             {
               text: "Bouligneux (01052)",
-              value: "10",
+              value: "210100525",
             },
             {
               text: "Bourg-en-Bresse (01053)",
-              value: "11",
+              value: "210100533",
             },
             {
               text: "Bourg-Saint-Christophe (01054)",
-              value: "12",
+              value: "210100541",
             },
             {
               text: "Saint-André-le-Bouchoux (01335)",
-              value: "13",
+              value: "210103354",
             },
             {
               text: "Saint-Denis-lès-Bourg (01344)",
-              value: "14",
+              value: "210103446",
             },
             {
               text: "Saint-Nizier-le-Bouchoux (01380)",
-              value: "15",
+              value: "210103800",
             },
           ],
         },
       ],
     };
   },
+  computed: {
+    select_data() {
+      return {
+        label: "Commune, EPCI, département, région",
+        optionGroups: this.groupedItems,
+      };
+    },
+  },
   components: {
+    Select,
     VSuperSelect,
   },
 };
