@@ -13,24 +13,40 @@
         defaultOption="Taper les premières lettres de la collectivité recherchée"
       />
 
-      <v-super-select
-        label="Commune, EPCI, département, région"
-        :items="groupedItems"
-        inputWidth="100%"
-        placeholder="Taper les premières lettres de la collectivité recherchée"
-      ></v-super-select>
+      <div class="rf-select-group">
+        <label class="rf-label">Commune, EPCI, département, région</label>
+        <multiselect
+          v-model="value"
+          :options="groupedItems"
+          group-values="items"
+          group-label="groupName"
+          track-by="value"
+          label="text"
+          :group-select="false"
+          :multiple="true"
+          placeholder="Taper les premières lettres de la collectivité recherchée"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import VSuperSelect from "v-super-select";
 import Select from "@/components/france-designsystem/Select.vue";
+import Multiselect from "vue-multiselect";
+
+// import VSuperSelect from "@/components/DsfrSuperSelect/VSuperSelect.vue";
 export default {
   name: "TitleSearch",
+  components: {
+    Select,
+    Multiselect,
+  },
   data() {
     return {
       loading: true,
+      value: null,
+      options: ["list", "of", "options"],
 
       groupedItems: [
         {
@@ -115,10 +131,6 @@ export default {
         optionGroups: this.groupedItems,
       };
     },
-  },
-  components: {
-    Select,
-    VSuperSelect,
   },
 };
 </script>

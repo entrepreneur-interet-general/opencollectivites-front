@@ -11,9 +11,8 @@
   "dependencies": {
     "@katalonne/vue-remixicon": "^1.0.3",
     "core-js": "^3.6.5",
-    "sass-loader": "^10.1.0",
-    "v-super-select": "^0.2.12",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vue-multiselect": "^2.1.6"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
