@@ -5,10 +5,7 @@
         <Brand :brand_name="brand_name" :isHeader="false" />
         <div class="rf-footer__content">
           <p class="rf-footer__content-desc">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
+            {{ content }}
           </p>
           <ul class="rf-footer__content-links">
             <li>
@@ -32,7 +29,7 @@
             <a href="#">Plan du site</a>
           </li>
           <li>
-            <a href="#">Accessibilité: non/partiellement/totalement conforme</a>
+            <a href="#">Accessibilité: {{ compliance }} conforme</a>
           </li>
           <li>
             <a href="#">Mentions légales</a>
@@ -59,6 +56,13 @@ export default {
     brand_name: {
       type: String,
       required: true,
+    },
+    content: {
+      type: String,
+    },
+    compliance: {
+      type: String,
+      default: "non/partiellement/totalement",
     },
   },
   components: { Brand },
