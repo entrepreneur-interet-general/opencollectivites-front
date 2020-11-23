@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils'
-import Brand from '@/components/france-designsystem/Brand.vue'
+import Brand from '@/components/vue-gouvfr/Brand.vue'
 
 let wrapper = null
 

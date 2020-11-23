@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils'
-import SearchBar from '@/components/france-designsystem/SearchBar.vue'
+import SearchBar from '@/components/vue-gouvfr/SearchBar.vue'
 
 let wrapper = null
 

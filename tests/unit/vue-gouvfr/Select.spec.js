@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils'
-import Select from '@/components/france-designsystem/Select.vue'
+import Select from '@/components/vue-gouvfr/Select.vue'
 
 let wrapper = null
 

@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils'
-import Tile from '@/components/france-designsystem/Tile.vue'
+import Tile from '@/components/vue-gouvfr/Tile.vue'
 
 let wrapper = null
 
