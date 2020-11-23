@@ -1,8 +1,8 @@
 <template>
   <div :class="[isHeader ? 'rf-header__brand' : 'rf-footer__brand']">
-    <a class="rf-logo" href="#" :title="brand_name">
+    <router-link to="/" class="rf-logo" :title="brand_name">
       <span class="rf-logo__title" v-html="brand_name"></span>
-    </a>
+    </router-link>
   </div>
 </template>
 

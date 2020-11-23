@@ -7,7 +7,10 @@ const propsData = {
     brand_name: "RÉPUBLIQUE<br />FRANÇAISE",
 }
 
-beforeEach(() => (wrapper = shallowMount(Brand, { propsData })))
+beforeEach(() => (wrapper = shallowMount(Brand, {
+    propsData,
+    stubs: ['router-link']
+})))
 afterEach(() => wrapper.destroy())
 
 describe('Brand.vue', () => {
