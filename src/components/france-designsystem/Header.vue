@@ -5,9 +5,13 @@
         <Brand :brand_name="brand_name" />
         <div class="rf-header__navbar" v-if="service_name">
           <div class="rf-service">
-            <a class="rf-service__title" href="#" :title="service_name">
-              {{ service_name }}
-            </a>
+            <router-link
+              to="/"
+              class="rf-service__title"
+              href="#"
+              :title="service_name"
+              >{{ service_name }}</router-link
+            >
             <p class="rf-service__tagline" v-if="tagline">
               {{ tagline }}
             </p>

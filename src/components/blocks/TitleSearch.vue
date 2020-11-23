@@ -7,129 +7,96 @@
         Trouver les études, statistiques et outils locaux utiles à vos prises de
         décision, recherches ou au débat public
       </h1>
-
-      <Select
-        :select_data="select_data"
-        defaultOption="Taper les premières lettres de la collectivité recherchée"
-      />
-
       <div class="rf-select-group">
         <label class="rf-label">Commune, EPCI, département, région</label>
         <multiselect
-          v-model="value"
-          :options="groupedItems"
+          v-model="place"
+          :options="optionList"
           group-values="items"
           group-label="groupName"
           track-by="value"
           label="text"
           :group-select="false"
-          :multiple="true"
+          :multiple="false"
+          :internal-search="false"
+          :loading="isLoading"
+          :preserve-search="true"
           placeholder="Taper les premières lettres de la collectivité recherchée"
-        />
+          @search-change="searchCollectivities"
+          :options-limit="300"
+          :limit="3"
+          :limit-text="limitText"
+          @input="loadResultPage"
+        >
+          <span slot="noOptions"></span>
+          <span slot="noResult">
+            Aucun résultat trouvé, merci de vérifier votre saisie.
+          </span>
+        </multiselect>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Select from "@/components/france-designsystem/Select.vue";
 import Multiselect from "vue-multiselect";
+import FranceSudbdivisionsDataService from "@/services/FranceSudbdivisionsDataService";
 
-// import VSuperSelect from "@/components/DsfrSuperSelect/VSuperSelect.vue";
 export default {
   name: "TitleSearch",
   components: {
-    Select,
     Multiselect,
   },
   data() {
     return {
-      loading: true,
-      value: null,
-      options: ["list", "of", "options"],
-
-      groupedItems: [
-        {
-          groupName: "Régions",
-          items: [
-            {
-              text: "Bourgogne-Franche-Comté",
-              value: "200053726",
-            },
-          ],
-        },
-        {
-          groupName: "Départements",
-          items: [
-            {
-              text: "Bouches-du-Rhône",
-              value: "221300015",
-            },
-          ],
-        },
-        {
-          groupName: "EPCI",
-          items: [
-            {
-              text: "CA du Bassin de Bourg-en-Bresse",
-              value: "200071751",
-            },
-            {
-              text: "CC du Bocage Bourbonnais",
-              value: "200071496",
-            },
-            {
-              text: "CC des Portes du Luxembourg",
-              value: "240800847",
-            },
-            {
-              text: "CC Normandie-Cabourg-Pays d'Auge",
-              value: "200065563",
-            },
-            {
-              text: "CA Bourges Plus",
-              value: "241800507",
-            },
-          ],
-        },
-        {
-          groupName: "Communes",
-          items: [
-            {
-              text: "Bouligneux (01052)",
-              value: "210100525",
-            },
-            {
-              text: "Bourg-en-Bresse (01053)",
-              value: "210100533",
-            },
-            {
-              text: "Bourg-Saint-Christophe (01054)",
-              value: "210100541",
-            },
-            {
-              text: "Saint-André-le-Bouchoux (01335)",
-              value: "210103354",
-            },
-            {
-              text: "Saint-Denis-lès-Bourg (01344)",
-              value: "210103446",
-            },
-            {
-              text: "Saint-Nizier-le-Bouchoux (01380)",
-              value: "210103800",
-            },
-          ],
-        },
-      ],
+      optionList: [],
+      place: null,
+      isLoading: false,
     };
   },
-  computed: {
-    select_data() {
-      return {
-        label: "Commune, EPCI, département, région",
-        optionGroups: this.groupedItems,
-      };
+  methods: {
+    limitText(count) {
+      return `et ${count} autres résultats`;
+    },
+    searchCollectivities(query) {
+      query = query.toLowerCase();
+      var shortnamed_communes = [
+        "by",
+        "bu",
+        "eu",
+        "gy",
+        "oz",
+        "oo",
+        "py",
+        "ri",
+        "ry",
+        "sy",
+        "ur",
+        "us",
+        "uz",
+        "y",
+      ];
+
+      if (query.length < 3 && !shortnamed_communes.includes(query)) {
+        this.optionList = [];
+      } else {
+        this.isLoading = true;
+        FranceSudbdivisionsDataService.findByName(query)
+          .then((response) => {
+            this.optionList = response.data;
+            this.isLoading = false;
+          })
+          .catch((e) => {
+            console.log("Service not responding");
+            console.log(e);
+          });
+      }
+    },
+    loadResultPage() {
+      this.$router.push({
+        name: "placeSummary",
+        params: { siren: this.place.value, name: this.place.text },
+      });
     },
   },
 };

@@ -6,27 +6,19 @@
               Relations <br />avec les collectivités <br />territoriales"
       :tools="tools"
     />
-    <TitleSearch />
-    <HomeFeed />
-    <HomeCategories />
+    <router-view />
     <Footer brand_name="République<br />française" />
   </div>
 </template>
 
 <script>
 import Header from "./components/france-designsystem/Header";
-import TitleSearch from "./components/blocks/TitleSearch";
-import HomeFeed from "./components/blocks/HomeFeed";
-import HomeCategories from "./components/blocks/HomeCategories";
 import Footer from "./components/france-designsystem/Footer";
 
 export default {
   name: "app",
   components: {
     Header,
-    TitleSearch,
-    HomeFeed,
-    HomeCategories,
     Footer,
   },
   data() {
