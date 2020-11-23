@@ -1,5 +1,3 @@
-@import url('../dsfr/dist/dsfr.css');
-
 fieldset[disabled] .multiselect {
     pointer-events: none;
 }
