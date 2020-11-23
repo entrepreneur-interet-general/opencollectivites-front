@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import Header from "./components/france-designsystem/Header";
-import Footer from "./components/france-designsystem/Footer";
+import Header from "./components/vue-gouvfr/Header";
+import Footer from "./components/vue-gouvfr/Footer";
 
 export default {
   name: "app",

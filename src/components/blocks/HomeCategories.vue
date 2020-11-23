@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import Tile from "../france-designsystem/Tile";
+import Tile from "../vue-gouvfr/Tile";
 export default {
   name: "HomeCategories",
   components: { Tile },

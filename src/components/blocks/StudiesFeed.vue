@@ -81,7 +81,7 @@
 </template>
 
 <script>
-import Card from "../france-designsystem/Card";
+import Card from "../vue-gouvfr/Card";
 export default {
   name: "StudiesFeed",
   components: { Card },

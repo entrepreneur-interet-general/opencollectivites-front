@@ -8,7 +8,6 @@
             <router-link
               to="/"
               class="rf-service__title"
-              href="#"
               :title="service_name"
               >{{ service_name }}</router-link
             >

@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils'
-import Card from '@/components/france-designsystem/Card.vue'
+import Card from '@/components/vue-gouvfr/Card.vue'
 
 let wrapper = null
 

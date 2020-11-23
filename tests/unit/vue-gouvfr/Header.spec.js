@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils'
-import Header from '@/components/france-designsystem/Header.vue'
-import Brand from '@/components/france-designsystem/Brand.vue'
+import Header from '@/components/vue-gouvfr/Header.vue'
+import Brand from '@/components/vue-gouvfr/Brand.vue'
 
 let wrapper = null
 
@@ -17,7 +17,10 @@ const propsData = {
     }
 }
 
-beforeEach(() => (wrapper = shallowMount(Header, { propsData })))
+beforeEach(() => (wrapper = shallowMount(Header, {
+    propsData,
+    stubs: ['router-link']
+})))
 afterEach(() => wrapper.destroy())
 
 describe('Header.vue', () => {

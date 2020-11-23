@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils'
-import Footer from '@/components/france-designsystem/Footer.vue'
-import Brand from '@/components/france-designsystem/Brand.vue'
+import Footer from '@/components/vue-gouvfr/Footer.vue'
+import Brand from '@/components/vue-gouvfr/Brand.vue'
 
 let wrapper = null
 
@@ -8,7 +8,10 @@ const propsData = {
     brand_name: "RÉPUBLIQUE<br />FRANÇAISE",
 }
 
-beforeEach(() => (wrapper = shallowMount(Footer, { propsData })))
+beforeEach(() => (wrapper = shallowMount(Footer, {
+    propsData,
+    stubs: ['router-link']
+})))
 afterEach(() => wrapper.destroy())
 
 describe('Footer.vue', () => {
