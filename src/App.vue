@@ -7,19 +7,22 @@
       :tools="tools"
     />
     <router-view />
+    <HomeCategories />
     <Footer brand_name="République<br />française" />
   </div>
 </template>
 
 <script>
-import Header from "./components/vue-gouvfr/Header";
-import Footer from "./components/vue-gouvfr/Footer";
+import Header from "@/components/vue-gouvfr/Header";
+import Footer from "@/components/vue-gouvfr/Footer";
+import HomeCategories from "@/components/blocks/HomeCategories";
 
 export default {
   name: "app",
   components: {
     Header,
     Footer,
+    HomeCategories,
   },
   data() {
     return {
