@@ -8,7 +8,7 @@
         v-for="doc in synthesisDocs"
         :key="doc.title"
       >
-        <Card :card_data="doc" :noArrow="true" />
+        <BaseCard :card_data="doc" :noArrow="true" />
       </div>
     </div>
 
@@ -19,7 +19,7 @@
         v-for="doc in communesDocs"
         :key="doc.title"
       >
-        <Card :card_data="doc" />
+        <BaseCard :card_data="doc" />
       </div>
     </div>
     <p class="feed-more-link">
@@ -35,7 +35,7 @@
         v-for="doc in communesDocs"
         :key="doc.title"
       >
-        <Card :card_data="doc" />
+        <BaseCard :card_data="doc" />
       </div>
     </div>
     <p class="feed-more-link">
@@ -52,7 +52,7 @@
         v-for="doc in communesDocs"
         :key="doc.title"
       >
-        <Card :card_data="doc" />
+        <BaseCard :card_data="doc" />
       </div>
     </div>
     <p class="feed-more-link">
@@ -69,7 +69,7 @@
         v-for="doc in communesDocs"
         :key="doc.title"
       >
-        <Card :card_data="doc" />
+        <BaseCard :card_data="doc" />
       </div>
     </div>
     <p class="feed-more-link">
@@ -81,10 +81,10 @@
 </template>
 
 <script>
-import Card from "../vue-gouvfr/Card";
+import BaseCard from "../vue-gouvfr/BaseCard";
 export default {
   name: "StudiesFeed",
-  components: { Card },
+  components: { BaseCard },
   data() {
     return {
       synthesisDocs: [

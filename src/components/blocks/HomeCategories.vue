@@ -9,7 +9,7 @@
       </h2>
       <div id="home-categories">
         <div v-for="(tile, index) in tiles" :key="index" class="rf-col-2">
-          <Tile :tile_data="tile" class="home-tile" />
+          <BaseTile :tile_data="tile" class="home-tile" />
         </div>
       </div>
     </div>
@@ -17,17 +17,17 @@
 </template>
 
 <script>
-import Tile from "../vue-gouvfr/Tile";
+import BaseTile from "../vue-gouvfr/BaseTile";
 export default {
   name: "HomeCategories",
-  components: { Tile },
+  components: { BaseTile },
   data() {
     return {
       tiles: [
         {
           title: "Aides & dotations",
           image: {
-            src: "img/remixicon/calculator-line.svg",
+            src: "/img/remixicon/calculator-line.svg",
             alt: "Aides & dotations",
           },
           url: "https://test.com",
@@ -35,7 +35,7 @@ export default {
         {
           title: "Culture & éducation",
           image: {
-            src: "img/remixicon/keynote-line.svg",
+            src: "/img/remixicon/keynote-line.svg",
             alt: "Culture & éducation",
           },
           url: "https://test.com",

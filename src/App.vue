@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header
+    <TheHeader
       service_name="Open Collectivités"
       brand_name="Ministère <br />de la Cohésion <br />des territoires <br />et des
               Relations <br />avec les collectivités <br />territoriales"
@@ -8,20 +8,20 @@
     />
     <router-view />
     <HomeCategories />
-    <Footer brand_name="République<br />française" />
+    <TheFooter brand_name="République<br />française" />
   </div>
 </template>
 
 <script>
-import Header from "@/components/vue-gouvfr/Header";
-import Footer from "@/components/vue-gouvfr/Footer";
+import TheHeader from "@/components/vue-gouvfr/TheHeader";
+import TheFooter from "@/components/vue-gouvfr/TheFooter";
 import HomeCategories from "@/components/blocks/HomeCategories";
 
 export default {
   name: "app",
   components: {
-    Header,
-    Footer,
+    TheHeader,
+    TheFooter,
     HomeCategories,
   },
   data() {
