@@ -40,7 +40,7 @@
 
 <script>
 import Multiselect from "vue-multiselect";
-import FranceSudbdivisionsDataService from "@/services/FranceSudbdivisionsDataService";
+import OpenCollectivitesDataService from "@/services/OpenCollectivitesDataService";
 
 export default {
   name: "TitleSearch",
@@ -81,7 +81,7 @@ export default {
         this.optionList = [];
       } else {
         this.isLoading = true;
-        FranceSudbdivisionsDataService.findByName(query)
+        OpenCollectivitesDataService.listByName(query)
           .then((response) => {
             this.optionList = response.data;
             this.isLoading = false;
@@ -95,7 +95,11 @@ export default {
     loadResultPage() {
       this.$router.push({
         name: "placeSummary",
-        params: { siren: this.place.value, name: this.place.text },
+        params: {
+          siren: this.place.value,
+          name: this.place.text,
+          type: this.place.type,
+        },
       });
     },
   },
