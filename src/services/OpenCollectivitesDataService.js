@@ -1,11 +1,14 @@
-import http from "../http-common";
+import apiCall from "../http-common";
 
 class OpenCollectivitesDataService {
     listByName(name) {
-        return http.get(`/france/all/${name}`);
+        return apiCall.get(`/france/all/${name}`);
     }
     communeBySiren(siren) {
-        return http.get(`/france/communes/siren/${siren}/`)
+        return apiCall.get(`/france/communes/siren/${siren}/`)
+    }
+    aspicFicheCommune(siren) {
+        return apiCall.get(`/aspic/fiche-commune/${siren}/`)
     }
 }
 
