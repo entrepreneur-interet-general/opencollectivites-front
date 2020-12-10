@@ -13,7 +13,7 @@ export default new Router({
             component: () => import("./components/pages/Homepage.vue")
         },
         {
-            path: "/siren/:siren/:name",
+            path: "/:type/:siren/:name?",
             name: "placeSummary",
             component: () => import("./components/pages/PlaceSummary.vue"),
             props: true
