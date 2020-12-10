@@ -23,12 +23,12 @@
     font-size: 1.3rem;
 }
 
-#home-categories {
+#home-categories, #navigation-tiles {
     display: flex;
     flex-wrap: wrap;
 }
 
-#home-categories .rf-col-2 {
+#home-categories .rf-col-2, #navigation-tiles .rf-col-2 {
     margin-bottom: 3rem;
 }
 .home-tile {
