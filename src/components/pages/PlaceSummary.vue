@@ -2,6 +2,7 @@
   <div v-if="display" id="opencollectivites">
     <div class="rf-container">
       <BaseBreadcrumb :currentPage="title" />
+
       <h1>{{ title }}</h1>
       <p>
         Code postal : {{ collectivity.code_postal }} / Code INSEE :
@@ -31,15 +32,66 @@
           <h2 id="donnees-contexte">Données de contexte</h2>
           <BaseTable caption="Population" :tableContent="popData" />
 
+          <BaseTable
+            caption="Emploi - chômage"
+            :tableContent="emploiChomageData"
+          />
+
+          <BaseTable caption="Niveau de vie" :tableContent="niveaudevieData" />
+
           <h2 id="intercommunalites-zonage">Intercommunalités et zonage</h2>
-          <p>[...]</p>
+          <BaseTable
+            :caption="`Intercommunalités (${listeIntercos.length})`"
+            :tableContent="listeIntercos"
+          />
+
+          <BaseTable
+            caption="Zonage de politiques publiques"
+            :tableContent="zonageData"
+          />
+          <a
+            title="Observatoire des Territoires"
+            href="https://www.observatoire-des-territoires.gouv.fr/"
+            target="_blank"
+            rel="noopener"
+            class="rf-link rf-link--icon-right"
+          >
+            Plus d’informations sur le site de l’Observatoire des Territoires
+          </a>
+
           <h2 id="ressources-financieres-fiscales">
             Ressources financières et fiscales
           </h2>
-          <p>[...]</p>
+
+          <BaseTable
+            caption="Dotation globale de fonctionnement"
+            :tableContent="dotationGlobaleData"
+          />
+
+          <BaseTable
+            caption="Dotation « Élu local »"
+            :tableContent="dotationEluLocalData"
+          />
+
+          <BaseTable
+            caption="Fonds national de péréquation des ressources intercommunales et communales (FPIC)"
+            :tableContent="dotationFpicData"
+          />
+          <a
+            title="Dotation - Direction générale des Collectivités locales"
+            href="http://www.dotations-dgcl.interieur.gouv.fr/"
+            target="_blank"
+            rel="noopener"
+            class="rf-link rf-link--icon-right"
+          >
+            Plus d’informations sur le site dotations de la DGCL
+          </a>
+
           <h2 id="communes-limitrophes-comparaison">
             Communes limitrophes et comparaison
           </h2>
+          <BaseButton label="Titre du bouton" class="rf-btn--icon-right" />
+
           <p>[...]</p>
           <h2 id="outils-pratiques">Outils pratiques</h2>
           <p>[...]</p>
@@ -58,9 +110,14 @@ import BaseTile from "../vue-gouvfr/BaseTile.vue";
 import BaseTable from "../vue-gouvfr/BaseTable.vue";
 import BaseSummary from "../vue-gouvfr/BaseSummary.vue";
 
+import { formatNumber } from "@/utils";
+import BaseButton from "../vue-gouvfr/BaseButton.vue";
+
 export default {
-  components: { BaseBreadcrumb, BaseTile, BaseTable, BaseSummary },
+  components: { BaseBreadcrumb, BaseTile, BaseTable, BaseSummary, BaseButton },
+
   name: "PlaceSummary",
+
   props: ["siren", "name", "type"],
   data() {
     return {
@@ -91,6 +148,7 @@ export default {
       ],
     };
   },
+
   created() {
     const types = { commune: "commune", departement: "département" };
     OpenCollectivitesDataService.communeBySiren(this.siren)
@@ -131,32 +189,134 @@ export default {
               },
             });
 
+            const years = this.collectivity.years;
+
             this.popData = [
               [
-                "Population totale en vigueur en 2020 (millésimée 2017)",
-                this.collectivity.PopTot.toLocaleString("fr-FR"),
+                `Population totale en vigueur en ${years.PopTot}`,
+                formatNumber(this.collectivity.PopTot),
               ],
               [
-                "Population municipale en vigueur en 2020 (millésimée 2017)",
-                this.collectivity.PopMuni.toLocaleString("fr-FR"),
+                `Population municipale en vigueur en ${years.PopMuni}`,
+                formatNumber(this.collectivity.PopMuni),
               ],
               [
-                "Densité démographique (population totale/superficie géographique, en hab/km²",
-                this.collectivity.Densité.toLocaleString("fr-FR"),
+                "Densité démographique (population totale/superficie géographique, en hab/km²)",
+                formatNumber(this.collectivity.Densité),
               ],
               [
-                "Variation annuelle de la population entre 2015 et 2020 (en %)",
-                this.collectivity.TCAM.toLocaleString("fr-FR"),
+                `Variation annuelle de la population entre ${years.TCAM} (en %)`,
+                formatNumber(this.collectivity.TCAM),
               ],
             ];
 
+            this.emploiChomageData = [
+              [
+                `Taux d’activité des 15 à 64 ans en ${years["PopActive1564%"]} (en %)`,
+                formatNumber(this.collectivity["PopActive1564%"]),
+              ],
+              [
+                `Taux de chômage des 15 à 64 ans en ${years["PopChom1564%"]} (en %)`,
+                formatNumber(this.collectivity["PopChom1564%"]),
+              ],
+            ];
+
+            this.niveaudevieData = [
+              [
+                `Revenu fiscal médian des ménages par unité de consommation ${years.RevenuFiscal} (en €)`,
+                formatNumber(this.collectivity.RevenuFiscal),
+              ],
+            ];
+
+            /* Liste des intercommunalités */
+            this.listeIntercos = [];
+            let interco_types = require("@/json/interco_types.json");
+            for (let interco_type of interco_types) {
+              for (let groupement of this.collectivity.groupements) {
+                if (
+                  interco_type.code == groupement.groupement__nature_juridique
+                ) {
+                  const newline = [
+                    interco_type.libelle,
+                    `${groupement.groupement__raison_sociale} (${groupement.groupement_id})`,
+                    interco_type.code,
+                  ];
+                  this.listeIntercos.push(newline);
+                }
+              }
+            }
+
+            this.zonageData = [
+              [
+                "Classement de la commune en zone de revitalisation rurale (ZRR)",
+                this.collectivity.ZRR ? "Classée en ZRR" : "Non classée",
+              ],
+              [
+                "Commune classée en zone de montagne",
+                this.collectivity.Montagne ? "Classée" : "Non classée",
+              ],
+            ];
+
+            this.dotationGlobaleData = [
+              [
+                "Dotation globale de fonctionnement totale (en €)",
+                formatNumber(this.collectivity.DGF_Totale),
+              ],
+              [
+                "Dont dotation forfaitaire (en €)",
+                formatNumber(this.collectivity.Forfaitaire),
+              ],
+              [
+                " - dotation de solidarité urbaine et de cohésion sociale (DSU) (en €)",
+                formatNumber(this.collectivity.DSU),
+              ],
+              [
+                " - dotation de solidarité rurale (DSR) (en €)",
+                formatNumber(this.collectivity.DSR),
+              ],
+              [
+                " - dotation de péréquation totale (DNP) (en €)",
+                formatNumber(this.collectivity.DNP),
+              ],
+              [
+                "DGF par habitant (en €)",
+                formatNumber(this.collectivity.DGFParHab),
+              ],
+              ["Population « DGF »", formatNumber(this.collectivity.PopDGF)],
+            ];
+
+            this.dotationEluLocalData = [
+              [
+                "Dotation élu local (en €)",
+                formatNumber(this.collectivity.DotationEluLocal),
+              ],
+            ];
+
+            this.dotationFpicData = [
+              [
+                "Solde net FPIC (en €)",
+                formatNumber(this.collectivity.SoldeFPIC),
+              ],
+              [
+                "Dont reversement au profit de la commune (en €)",
+                formatNumber(this.collectivity.AttributionFPIC),
+              ],
+              [
+                "Dont prélèvement de la commune (en €)",
+                formatNumber(this.collectivity.ContributionFPIC),
+              ],
+              [
+                "FPIC par habitant (en €)",
+                formatNumber(this.collectivity.SoldeFPIC_DGF),
+              ],
+            ];
             this.display = true;
           }
         );
       })
       .catch((e) => {
-        console.log("Service not responding");
-        console.log(e);
+        console.error("Service not responding");
+        console.error(e);
       });
   },
 };

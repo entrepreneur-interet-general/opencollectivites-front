@@ -1,0 +1,93 @@
+[
+    {
+        "code": "METRO",
+        "libelle": "Métropole",
+        "fiscalite_propre": true,
+        "syndicat_carte": false,
+        "annee_creation": "2012"
+    },
+    {
+        "code": "MET69",
+        "libelle": "Métropole de Lyon",
+        "fiscalite_propre": true,
+        "syndicat_carte": false,
+        "annee_creation": "2015"
+    },
+    {
+        "code": "CU",
+        "libelle": "Communauté urbaine",
+        "fiscalite_propre": true,
+        "syndicat_carte": false,
+        "annee_creation": "1966"
+    },
+    {
+        "code": "CA",
+        "libelle": "Communauté d’agglomération",
+        "fiscalite_propre": true,
+        "syndicat_carte": false,
+        "annee_creation": "1992"
+    },
+    {
+        "code": "CC",
+        "libelle": "Communauté de communes",
+        "fiscalite_propre": true,
+        "syndicat_carte": false,
+        "annee_creation": "1999"
+    },
+    {
+        "code": "SAN",
+        "libelle": "Syndicat d’agglomération nouvelle",
+        "fiscalite_propre": true,
+        "syndicat_carte": false,
+        "annee_creation": "1983"
+    },
+    {
+        "code": "SIVU",
+        "libelle": "Syndicat intercommunal à vocation unique",
+        "fiscalite_propre": false,
+        "syndicat_carte": true,
+        "annee_creation": "1890"
+    },
+    {
+        "code": "SIVOM",
+        "libelle": "Syndicat intercommunal à vocation multiple",
+        "fiscalite_propre": false,
+        "syndicat_carte": true,
+        "annee_creation": "1959"
+    },
+    {
+        "code": "SMF",
+        "libelle": "Syndicat mixte fermé",
+        "fiscalite_propre": false,
+        "syndicat_carte": true,
+        "annee_creation": "1935"
+    },
+    {
+        "code": "SMO",
+        "libelle": "Syndicat mixte ouvert",
+        "fiscalite_propre": false,
+        "syndicat_carte": true,
+        "annee_creation": "1935"
+    },
+    {
+        "code": "POLEM",
+        "libelle": "Pôle métropolitain",
+        "fiscalite_propre": false,
+        "syndicat_carte": false,
+        "annee_creation": "2012"
+    },
+    {
+        "code": "PETR",
+        "libelle": "Pôle d’équilibre territorial et rural",
+        "fiscalite_propre": false,
+        "syndicat_carte": false,
+        "annee_creation": "2015"
+    },
+    {
+        "code": "EPT",
+        "libelle": "Établissement public territorial",
+        "fiscalite_propre": false,
+        "syndicat_carte": true,
+        "annee_creation": "2015"
+    }
+]
