@@ -41,6 +41,7 @@
 <script>
 import Multiselect from "vue-multiselect";
 import OpenCollectivitesDataService from "@/services/OpenCollectivitesDataService";
+import { shortnamedCommunes } from "@/utils";
 
 export default {
   name: "TitleSearch",
@@ -60,24 +61,8 @@ export default {
     },
     searchCollectivities(query) {
       query = query.toLowerCase();
-      var shortnamed_communes = [
-        "by",
-        "bu",
-        "eu",
-        "gy",
-        "oz",
-        "oo",
-        "py",
-        "ri",
-        "ry",
-        "sy",
-        "ur",
-        "us",
-        "uz",
-        "y",
-      ];
 
-      if (query.length < 3 && !shortnamed_communes.includes(query)) {
+      if (query.length < 3 && !shortnamedCommunes.includes(query)) {
         this.optionList = [];
       } else {
         this.isLoading = true;
