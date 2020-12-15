@@ -90,9 +90,8 @@
           <h2 id="communes-limitrophes-comparaison">
             Communes limitrophes et comparaison
           </h2>
-          <BaseButton label="Titre du bouton" class="rf-btn--icon-right" />
+          <CollectivityCompareSelector type="commune" :origin="siren" />
 
-          <p>[...]</p>
           <h2 id="outils-pratiques">Outils pratiques</h2>
           <p>[...]</p>
         </div>
@@ -105,16 +104,21 @@
 
 <script>
 import BaseBreadcrumb from "../vue-gouvfr/BaseBreadcrumb.vue";
-import OpenCollectivitesDataService from "@/services/OpenCollectivitesDataService";
 import BaseTile from "../vue-gouvfr/BaseTile.vue";
 import BaseTable from "../vue-gouvfr/BaseTable.vue";
 import BaseSummary from "../vue-gouvfr/BaseSummary.vue";
-
+import CollectivityCompareSelector from "../blocks/CollectivityCompareSelector.vue";
+import OpenCollectivitesDataService from "@/services/OpenCollectivitesDataService";
 import { formatNumber } from "@/utils";
-import BaseButton from "../vue-gouvfr/BaseButton.vue";
 
 export default {
-  components: { BaseBreadcrumb, BaseTile, BaseTable, BaseSummary, BaseButton },
+  components: {
+    BaseBreadcrumb,
+    BaseTile,
+    BaseTable,
+    BaseSummary,
+    CollectivityCompareSelector,
+  },
 
   name: "PlaceSummary",
 
