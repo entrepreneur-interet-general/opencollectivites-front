@@ -41,3 +41,12 @@
     text-align: center;
     display: inline-block;
 }
+
+.comparison-selector {
+    padding: 10px;
+    margin-bottom: 2em;
+}
+
+.comparison-selector button {
+    margin-top: 1em;
+}
