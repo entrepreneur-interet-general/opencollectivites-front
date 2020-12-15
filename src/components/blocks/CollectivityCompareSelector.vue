@@ -2,9 +2,9 @@
   <div class="comparison-selector rf-bg--alt">
     <form @submit.prevent="loadResultPage">
       <div class="rf-select-group">
-        <label class="rf-label"
-          >Sélectionnez jusqu'à trois collectivités :</label
-        >
+        <label class="rf-label">
+          Sélectionnez jusqu'à trois collectivités :
+        </label>
         <multiselect
           v-model="places"
           :options="optionList"

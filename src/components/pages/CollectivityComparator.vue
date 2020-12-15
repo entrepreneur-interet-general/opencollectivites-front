@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import store from "@/store";
+
 export default {
   props: {
     type: { type: String, required: true },
@@ -20,6 +22,11 @@ export default {
     siren2: { type: String, required: true },
     siren3: { type: String, default: null },
     siren4: { type: String, default: null },
+  },
+
+  mounted() {
+    store.commit("increment");
+    console.log(store.state.count);
   },
 };
 </script>

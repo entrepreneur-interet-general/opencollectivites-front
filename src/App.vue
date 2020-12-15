@@ -16,6 +16,7 @@
 import TheHeader from "@/components/vue-gouvfr/TheHeader";
 import TheFooter from "@/components/vue-gouvfr/TheFooter";
 import HomeCategories from "@/components/blocks/HomeCategories";
+import store from "@/store";
 
 export default {
   name: "app",
@@ -31,6 +32,7 @@ export default {
       },
     };
   },
+  store,
 };
 </script>
 
