@@ -18,5 +18,11 @@ export default new Router({
             component: () => import("./components/pages/PlaceSummary.vue"),
             props: true
         },
+        {
+            path: "/compare/:type/:siren1/:siren2?/:siren3?/:siren4?",
+            name: "collectivityComparator",
+            component: () => import("./components/pages/CollectivityComparator.vue"),
+            props: true
+        },
     ]
 });
