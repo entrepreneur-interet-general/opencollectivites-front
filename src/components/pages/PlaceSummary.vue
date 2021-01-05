@@ -185,8 +185,8 @@ export default {
       });
 
       this.navigationTiles.push({
-        title: "Département : " + this.collectivity.departement.name,
-        url: `/epci/${this.collectivity.departement.siren}/${this.collectivity.departement.name}`,
+        title: "Département : " + this.departement.name,
+        url: `/epci/${this.departement.siren}/${this.departement.name}`,
         image: {
           src: "/img/hexagon3.svg",
           alt: "Département",
@@ -194,8 +194,8 @@ export default {
       });
 
       this.navigationTiles.push({
-        title: "Région : " + this.collectivity.departement.region.name,
-        url: `/epci/${this.collectivity.departement.region.siren}/${this.collectivity.departement.region.name}`,
+        title: "Région : " + this.region.name,
+        url: `/epci/${this.region.siren}/${this.region.name}`,
         image: {
           src: "/img/hexagon4.svg",
           alt: "Région",
