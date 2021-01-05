@@ -11,9 +11,14 @@ import HomeFeed from "@/components/blocks/HomeFeed";
 
 export default {
   name: "Homepage",
+
   components: {
     TitleSearch,
     HomeFeed,
+  },
+
+  created() {
+    this.$emit("ready");
   },
 };
 </script>
