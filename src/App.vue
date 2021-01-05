@@ -6,7 +6,9 @@
               Relations <br />avec les collectivités <br />territoriales"
       :tools="tools"
     />
-    <router-view />
+    <router-view :key="$route.path" v-show="showPage" @ready="pageReady" />
+    <AppSpinner v-show="!showPage" />
+
     <HomeCategories />
     <TheFooter brand_name="République<br />française" />
   </div>
@@ -16,6 +18,7 @@
 import TheHeader from "@/components/vue-gouvfr/TheHeader";
 import TheFooter from "@/components/vue-gouvfr/TheFooter";
 import HomeCategories from "@/components/blocks/HomeCategories";
+import AppSpinner from "./components/blocks/AppSpinner.vue";
 
 export default {
   name: "app",
@@ -23,13 +26,22 @@ export default {
     TheHeader,
     TheFooter,
     HomeCategories,
+    AppSpinner,
   },
   data() {
     return {
       tools: {
         dark_mode: true,
       },
+
+      showPage: false,
     };
+  },
+
+  methods: {
+    pageReady() {
+      this.showPage = true;
+    },
   },
 };
 </script>
