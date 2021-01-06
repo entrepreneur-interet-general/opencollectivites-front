@@ -29,24 +29,38 @@
       <div class="rf-grid-row">
         <div class="rf-col-8">
           <h2 id="donnees-contexte">Données de contexte</h2>
-          <BaseTable caption="Population" :tableContent="popData" />
+          <BaseTable
+            caption="Population"
+            :tableContent="popData"
+            :fullWidth="true"
+            :force10="true"
+          />
 
           <BaseTable
             caption="Emploi - chômage"
             :tableContent="emploiChomageData"
+            :fullWidth="true"
+            :force10="true"
           />
 
-          <BaseTable caption="Niveau de vie" :tableContent="niveaudevieData" />
+          <BaseTable
+            caption="Niveau de vie"
+            :tableContent="niveaudevieData"
+            :fullWidth="true"
+            :force10="true"
+          />
 
           <h2 id="intercommunalites-zonage">Intercommunalités et zonage</h2>
           <BaseTable
             :caption="`Intercommunalités (${listeIntercos.length})`"
             :tableContent="listeIntercos"
+            :fullWidth="true"
           />
 
           <BaseTable
             caption="Zonage de politiques publiques"
             :tableContent="zonageData"
+            :fullWidth="true"
           />
           <a
             title="Observatoire des Territoires"
@@ -65,16 +79,22 @@
           <BaseTable
             caption="Dotation globale de fonctionnement"
             :tableContent="dotationGlobaleData"
+            :fullWidth="true"
+            :force10="true"
           />
 
           <BaseTable
             caption="Dotation « Élu local »"
             :tableContent="dotationEluLocalData"
+            :fullWidth="true"
+            :force10="true"
           />
 
           <BaseTable
             caption="Fonds national de péréquation des ressources intercommunales et communales (FPIC)"
             :tableContent="dotationFpicData"
+            :fullWidth="true"
+            :force10="true"
           />
           <a
             title="Dotation - Direction générale des Collectivités locales"
@@ -162,10 +182,13 @@ export default {
   },
 
   methods: {
+    ...mapActions("header", ["minimizeHeader"]),
     ...mapActions("communes", ["fetchCommuneData"]),
   },
 
   created() {
+    this.minimizeHeader();
+
     const types = { commune: "commune", departement: "département" };
     this.fetchCommuneData({ siren: this.siren }).then((response) => {
       this.collectivity = response;

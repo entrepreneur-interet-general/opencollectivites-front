@@ -7,6 +7,8 @@
       'rf-table--layout-fixed': fixedLayout,
       'rf-table--no-caption': noCaption,
       'rf-table--caption-bottom': bottomCaption,
+      'rf-table--fullwidth': fullWidth,
+      'rf-table--force10': force10,
     }"
   >
     <table>
@@ -65,9 +67,24 @@ export default {
       type: Boolean,
       default: false,
     },
+    fullWidth: {
+      type: Boolean,
+      default: false,
+    },
+    force10: {
+      type: Boolean,
+      default: false,
+    },
   },
 };
 </script>
 
-<style>
+<style scoped>
+.rf-table--fullwidth {
+  width: 100%;
+}
+
+.rf-table--force10 td + td {
+  width: 10%;
+}
 </style>
