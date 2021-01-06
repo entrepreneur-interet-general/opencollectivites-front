@@ -2,13 +2,12 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import communes from './modules/communes'
+import header from './modules/header'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {
-    count: 0
-  },
+  state: {},
 
   getters: {
     listItems: (state) => (resource) => {
@@ -16,21 +15,18 @@ export default new Vuex.Store({
     }
   },
 
-  actions: {},
+  actions: {
+  },
 
   mutations: {
-    increment(state) {
-      state.count++
-    },
-
     setItem(state, { item, id, resource }) {
-      console.log("Setting item" + id + " " + resource)
       Vue.set(state[resource].items, id, item)
     }
   },
 
   modules: {
-    communes
+    communes,
+    header
   }
 
 })

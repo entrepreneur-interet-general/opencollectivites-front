@@ -2,7 +2,7 @@
   <header class="rf-header">
     <div class="rf-container">
       <div class="rf-header__body">
-        <BaseBrand :brand_name="brand_name" />
+        <BaseBrand :brand_name="brand_name" v-show="getHeaderSize" />
         <div class="rf-header__navbar" v-if="service_name">
           <div class="rf-service">
             <router-link to="/" class="rf-service__title" :title="service_name">
@@ -69,7 +69,13 @@
 <script>
 import BaseBrand from "./BaseBrand";
 
+import { mapGetters } from "vuex";
+
 export default {
+  components: {
+    BaseBrand,
+  },
+
   props: {
     brand_name: {
       type: String,
@@ -84,9 +90,8 @@ export default {
       },
     },
   },
-  components: {
-    BaseBrand,
-  },
+
+  computed: { ...mapGetters("header", ["getHeaderSize"]) },
 };
 </script>
 

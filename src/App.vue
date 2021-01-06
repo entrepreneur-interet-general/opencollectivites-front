@@ -28,6 +28,7 @@ export default {
     HomeCategories,
     AppSpinner,
   },
+
   data() {
     return {
       tools: {
