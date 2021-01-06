@@ -24,5 +24,16 @@ export default new Router({
             component: () => import("./components/pages/CollectivityComparator.vue"),
             props: true
         },
+        {
+            path: "/erreur",
+            name: "error",
+            component: () => import("./components/pages/PageError.vue")
+        },
+        {
+            path: '*',
+            name: 'NotFound',
+            component: () => import("./components/pages/PageNotFound.vue")
+        }
+
     ]
 });
