@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@katalonne/vue-remixicon": "^1.0.3",
-    "axios": "^0.21.0",
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
     "vue-multiselect": "^2.1.6",
