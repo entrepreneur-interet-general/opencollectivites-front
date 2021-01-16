@@ -12,6 +12,7 @@
     "@katalonne/vue-remixicon": "^1.0.3",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "joi": "^17.3.0",
     "vue": "^2.6.11",
     "vue-multiselect": "^2.1.6",
     "vue-router": "^3.4.9",
