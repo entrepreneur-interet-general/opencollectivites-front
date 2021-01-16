@@ -265,7 +265,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #comparator-header-block {
   background: #fff;
   position: fixed;
