@@ -1,4 +1,14 @@
-import apiCall from "../http-common"
+import axios from "axios";
+
+console.log(process.env.VUE_APP_TITLE)
+console.log(process.env.VUE_APP_API_BASE_URL)
+
+const apiCall = axios.create({
+  baseURL: "http://localhost:8000/api",
+  headers: {
+    "Content-type": "application/json"
+  }
+});
 
 class OpenCollectivitesDataService {
   listByName(name) {
