@@ -25,6 +25,11 @@ export default new Router({
             props: true
         },
         {
+            path: "/a-venir",
+            name: "NotYet",
+            component: () => import("./components/pages/PageNotYet.vue")
+        },
+        {
             path: "/erreur",
             name: "error",
             component: () => import("./components/pages/PageError.vue")

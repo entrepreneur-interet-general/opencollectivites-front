@@ -19,6 +19,7 @@
 .feed-more-link {
     text-align: right;
 }
+
 .feed-more-link a {
     font-size: 1.3rem;
 }
@@ -31,6 +32,7 @@
 #home-categories .rf-col-2, #navigation-tiles .rf-col-2 {
     margin-bottom: 3rem;
 }
+
 .home-tile {
     margin: 0 1rem;
     height: 100%;
@@ -49,4 +51,8 @@
 
 .comparison-selector button {
     margin-top: 1em;
+}
+
+#full-page-message {
+    margin: 3em auto;
 }

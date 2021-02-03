@@ -111,8 +111,8 @@
           </h2>
           <CollectivityCompareSelector type="commune" :origin="siren" />
 
-          <h2 id="outils-pratiques">Outils pratiques</h2>
-          <p>[...]</p>
+          <!--<h2 id="outils-pratiques">Outils pratiques</h2>
+          <p>[...]</p>-->
         </div>
         <div class="rf-col-1"></div>
         <div class="rf-col-3"><BaseSummary :anchors="summaryAnchors" /></div>
@@ -189,7 +189,22 @@ export default {
   created() {
     this.minimizeHeader();
 
-    const types = { commune: "commune", departement: "département" };
+    const types = {
+      commune: "commune",
+      departement: "département",
+      region: "région",
+      epci: "EPCI",
+    };
+
+    if (!(this.type in types)) {
+      this.$router.push({
+        name: "NotFound",
+      });
+    } else if (this.type != "commune") {
+      this.$router.push({
+        name: "NotYet",
+      });
+    }
     this.fetchCommuneData({ siren: this.siren }).then((response) => {
       this.collectivity = response;
       this.departement = response.departement;

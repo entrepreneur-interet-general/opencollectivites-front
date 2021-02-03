@@ -1,11 +1,11 @@
 <template>
-  <div id="full-page-message" class="rf-container rf-error">
+  <div id="full-page-message" class="rf-container rf-info">
     <BaseCallout
-      title="Page introuvable"
-      text="La page que vous cherchez n'a pas été trouvée."
+      title="Page encore non implémentée"
+      text="La page que vous cherchez n'a pas encore été implémentée. En effet, Open Collectivités est encore en phase de développement actif."
       buttonLabel="Retourner à l'accueil"
       v-on:button-clicked="handleClick"
-      class="rf-fi-alert-fill rf-callout--scheme-soft-orange-soft"
+      class="rf-fi-info-fill rf-callout--scheme-soft-blue-soft"
     />
   </div>
 </template>

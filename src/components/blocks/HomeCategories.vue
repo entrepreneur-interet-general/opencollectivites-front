@@ -2,7 +2,7 @@
   <div
     class="rf-container-fluid rf-bg--alt rf-padding-bottom-6N rf-padding-top-2N"
   >
-    <div class="rf-container">
+    <div id="categories-jumbotron" class="rf-container">
       <h2>
         Toutes les études, statistiques et outils pour les communes par
         thématique
@@ -30,7 +30,7 @@ export default {
             src: "/img/remixicon/calculator-line.svg",
             alt: "Aides & dotations",
           },
-          url: "https://test.com",
+          url: "/a-venir",
         },
         {
           title: "Culture & éducation",
@@ -38,7 +38,7 @@ export default {
             src: "/img/remixicon/keynote-line.svg",
             alt: "Culture & éducation",
           },
-          url: "https://test.com",
+          url: "/a-venir",
         },
         {
           title: "Emploi & Fonction publique territoriale",
@@ -46,7 +46,7 @@ export default {
             src: "/img/remixicon/briefcase-4-line.svg",
             alt: "Emploi & Fonction publique territoriale",
           },
-          url: "https://test.com",
+          url: "/a-venir",
         },
         {
           title: "Finances & Fiscalité",
@@ -54,7 +54,7 @@ export default {
             src: "/img/remixicon/percent-line.svg",
             alt: "Finances & Fiscalité",
           },
-          url: "https://test.com",
+          url: "/a-venir",
         },
         {
           title: "Géographie & Intercom­munalités", // Il y a une marque de césure (U+00AD SOFT HYPHEN) entre les deux "m".
@@ -62,7 +62,7 @@ export default {
             src: "/img/remixicon/map-2-line.svg",
             alt: "Géographie & Intercommunalités",
           },
-          url: "https://test.com",
+          url: "/a-venir",
         },
         {
           title: "Parité",
@@ -70,7 +70,7 @@ export default {
             src: "/img/parite.svg",
             alt: "Parité",
           },
-          url: "https://test.com",
+          url: "/a-venir",
         },
         {
           title: "Santé & Social",
@@ -78,7 +78,7 @@ export default {
             src: "/img/remixicon/hospital-line.svg",
             alt: "Santé & Social",
           },
-          url: "https://test.com",
+          url: "/a-venir",
         },
         {
           title: "Sécurité",
@@ -86,7 +86,7 @@ export default {
             src: "/img/remixicon/shield-line.svg",
             alt: "Sécurité",
           },
-          url: "https://test.com",
+          url: "/a-venir",
         },
       ],
     };
@@ -94,4 +94,8 @@ export default {
 };
 </script>
 <style scoped>
+#categories-jumbotron {
+  padding-top: 1em;
+  margin-top: 1em;
+}
 </style>

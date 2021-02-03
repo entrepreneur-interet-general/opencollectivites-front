@@ -1,5 +1,5 @@
 <template>
-  <div class="rf-container rf-error">
+  <div id="full-page-message" class="rf-container rf-error">
     <BaseCallout
       title="Erreur"
       text="Une erreur est survenue"
