@@ -1,5 +1,6 @@
 <template>
   <div
+    id="homesearch"
     class="rf-container-fluid rf-bg--alt rf-padding-bottom-6N rf-padding-top-2N"
   >
     <div class="rf-container">
@@ -92,4 +93,8 @@ export default {
 </script>
 
 <style scoped>
+#homesearch {
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
 </style>

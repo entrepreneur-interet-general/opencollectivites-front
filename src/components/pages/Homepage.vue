@@ -1,21 +1,21 @@
 <template>
   <div id="opencollectivites">
-    <TitleSearch />
-    <HomeFeed />
+    <HomeSearch />
+    <!--<HomeFeed />-->
   </div>
 </template>
 
 <script>
-import TitleSearch from "@/components/blocks/TitleSearch";
-import HomeFeed from "@/components/blocks/HomeFeed";
+import HomeSearch from "@/components/blocks/HomeSearch";
+//import HomeFeed from "@/components/blocks/HomeFeed";
 import { mapActions } from "vuex";
 
 export default {
   name: "Homepage",
 
   components: {
-    TitleSearch,
-    HomeFeed,
+    HomeSearch,
+    //HomeFeed,
   },
 
   methods: {
