@@ -1,10 +1,7 @@
 import axios from "axios";
 
-console.log(process.env.VUE_APP_TITLE)
-console.log(process.env.VUE_APP_API_BASE_URL)
-
 const apiCall = axios.create({
-  baseURL: "http://localhost:8000/api",
+  baseURL: process.env.VUE_APP_API_BASE_URL,
   headers: {
     "Content-type": "application/json"
   }
