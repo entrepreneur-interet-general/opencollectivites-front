@@ -1,9 +1,9 @@
 # opencollectivites-front
 
 ## Project setup
-```
-yarn install
-```
+
+* `yarn install`
+* Create a `.env.local` if you need to change some variables
 
 ### Compiles and hot-reloads for development
 ```
