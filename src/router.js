@@ -13,6 +13,11 @@ export default new Router({
             component: () => import("./components/pages/Homepage.vue")
         },
         {
+            path: "/publications",
+            name: "publications",
+            component: () => import("./components/pages/PagePublications.vue")
+        },
+        {
             path: "/:type/:siren/:name?",
             name: "placeSummary",
             component: () => import("./components/pages/PlaceSummary.vue"),
@@ -28,6 +33,11 @@ export default new Router({
             path: "/a-venir",
             name: "NotYet",
             component: () => import("./components/pages/PageNotYet.vue")
+        },
+        {
+            path: "/test",
+            name: "Test",
+            component: () => import("./components/pages/PageTest.vue")
         },
         {
             path: "/erreur",
