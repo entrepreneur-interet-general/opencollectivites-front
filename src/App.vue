@@ -9,7 +9,7 @@
     <router-view :key="$route.path" v-show="showPage" @ready="pageReady" />
     <AppSpinner v-show="!showPage" />
 
-    <HomeCategories />
+    <FooterCategories />
     <TheFooter brand_name="République<br />française" />
   </div>
 </template>
@@ -17,7 +17,7 @@
 <script>
 import TheHeader from "@/components/vue-gouvfr/TheHeader";
 import TheFooter from "@/components/vue-gouvfr/TheFooter";
-import HomeCategories from "@/components/blocks/HomeCategories";
+import FooterCategories from "@/components/blocks/FooterCategories";
 import AppSpinner from "./components/blocks/AppSpinner.vue";
 
 export default {
@@ -25,7 +25,7 @@ export default {
   components: {
     TheHeader,
     TheFooter,
-    HomeCategories,
+    FooterCategories,
     AppSpinner,
   },
 
