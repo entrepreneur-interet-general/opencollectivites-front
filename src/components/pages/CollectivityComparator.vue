@@ -2,17 +2,20 @@
   <div id="opencollectivites">
     <div id="comparator-header-block">
       <div class="rf-container">
-        <table class="comparator-header-table">
+        <table
+          class="comparator-header-table"
+          aria-label="Comparaison de collectivités"
+        >
           <thead>
             <tr>
-              <td>
+              <th>
                 <router-link tag="span" :to="linkBackRoute">
                   <BaseButton :isSecondary="true" label="<" />
                 </router-link>
-              </td>
-              <td v-for="(name, key) in placesNames" :key="key" width="10%">
+              </th>
+              <th v-for="(name, key) in placesNames" :key="key" width="10%">
                 {{ name }}
-              </td>
+              </th>
             </tr>
           </thead>
         </table>
@@ -280,7 +283,9 @@ export default {
   min-height: 7em;
   border-collapse: collapse;
 }
-.comparator-header-table td {
+
+.comparator-header-table th {
+  font-weight: normal;
   border: 1px solid #ccc;
 }
 </style>
