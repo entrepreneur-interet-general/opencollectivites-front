@@ -8,12 +8,17 @@
         >
           <thead>
             <tr>
-              <th>
+              <th scope="Navigation">
                 <router-link tag="span" :to="linkBackRoute">
                   <BaseButton :isSecondary="true" label="<" />
                 </router-link>
               </th>
-              <th v-for="(name, key) in placesNames" :key="key" width="10%">
+              <th
+                v-for="(name, key) in placesNames"
+                :key="key"
+                :scope="'Collectivity-' + key"
+                width="10%"
+              >
                 {{ name }}
               </th>
             </tr>
