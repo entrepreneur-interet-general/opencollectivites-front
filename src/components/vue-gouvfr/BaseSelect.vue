@@ -32,7 +32,9 @@
       :disabled="isDisabled === true"
       v-if="select_data.optionGroups"
     >
-      <option value="" selected disabled hidden>{{ defaultOption }}</option>
+      <option value="" disabled hidden :selected="!queryValue">
+        {{ defaultOption }}
+      </option>
       <optgroup
         v-for="group in select_data.optionGroups"
         :label="group.groupName"
@@ -41,9 +43,11 @@
         <option
           v-for="option in group.items"
           :value="option.value"
+          :selected="option.value == queryValue"
           :key="option.value"
           :disabled="option.isDisabled === true"
           :hidden="option.isHidden === true"
+          @click="$emit('input', option)"
         >
           {{ option.text }}
         </option>
@@ -58,13 +62,17 @@
       :disabled="isDisabled === true"
       v-else
     >
-      <option value="" selected disabled hidden>{{ defaultOption }}</option>
+      <option value="" :selected="!queryValue" disabled hidden>
+        {{ defaultOption }}
+      </option>
       <option
         v-for="option in select_data.options"
         :value="option.value"
+        :selected="option.value == queryValue"
         :key="option.value"
         :disabled="option.isDisabled === true"
         :hidden="option.isHidden === true"
+        @click="$emit('input', option)"
       >
         {{ option.text }}
       </option>
@@ -112,6 +120,10 @@ export default {
       type: String,
       default: "- Select -",
     },
+    queryParam: {
+      type: String,
+      required: false,
+    },
   },
   computed: {
     selectId() {
@@ -124,6 +136,14 @@ export default {
       } else {
         return "select";
       }
+    },
+    queryValue() {
+      if (this.queryParam) {
+        if (this.$route.query[this.queryParam]) {
+          return this.$route.query[this.queryParam];
+        }
+      }
+      return null;
     },
   },
 };
