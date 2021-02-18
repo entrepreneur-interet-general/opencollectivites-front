@@ -17,6 +17,13 @@ class OpenCollectivitesDataService {
   aspicFicheCommune(siren) {
     return apiCall.get(`/aspic/fiche-commune/${siren}`)
   }
+  publicationFilters() {
+    return apiCall.get(`/core/filters`)
+  }
+  getPublications(filters) {
+    return apiCall.get(`/core/documents`, { params: filters })
+  }
+
 }
 
 export default new OpenCollectivitesDataService();

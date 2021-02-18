@@ -1,0 +1,94 @@
+<template>
+  <div class="rf-container">
+    <form id="publications-header-form" class="rf-grid-row">
+      <BaseSelect
+        class="rf-col-4"
+        title="Thématique"
+        :select_data="topics"
+        defaultOption="- Thématique -"
+        queryParam="topic"
+        @input="setParam('topic', $event)"
+      />
+      <span class="rf-col-1"></span>
+      <BaseSelect
+        class="rf-col-4"
+        title="Portée"
+        :select_data="scopes"
+        defaultOption="- Portée -"
+        queryParam="scope"
+        @input="setParam('scope', $event)"
+      />
+    </form>
+  </div>
+</template>
+
+
+<script>
+import BaseSelect from "../vue-gouvfr/BaseSelect.vue";
+import { mapActions, mapGetters } from "vuex";
+
+export default {
+  components: {
+    BaseSelect,
+  },
+  data() {
+    return {
+      topics: { label: "Thématique", options: [] },
+      scopes: { label: "Portée", options: [] },
+    };
+  },
+  computed: {
+    ...mapGetters("publications", ["getTopics", "getScopes"]),
+  },
+  methods: {
+    ...mapActions("header", ["minimizeHeader"]),
+    ...mapActions("publications", ["fetchFilters"]),
+    queryWithParameterValue(parameter, value) {
+      const query = Object.assign({}, this.$route.query);
+      query[parameter] = value;
+      return query;
+    },
+    routeWithParameterValue(parameter, value) {
+      return {
+        name: this.$route.name,
+        query: this.queryWithParameterValue(parameter, value),
+      };
+    },
+    setParam(parameter, value) {
+      const newRoute = this.routeWithParameterValue(parameter, value.value);
+      this.$router.push(newRoute);
+      this.$emit("update:filters", newRoute.query);
+    },
+  },
+
+  created() {
+    return new Promise((resolve) => {
+      if (!this.getTopics.length) {
+        resolve(this.fetchFilters());
+      } else {
+        resolve(this.getTopics);
+      }
+    }).then(() => {
+      return new Promise(() => {
+        for (var topic of this.getTopics) {
+          this.topics.options.push({
+            text: topic.name,
+            value: topic.id,
+          });
+        }
+
+        for (var scope of this.getScopes) {
+          this.scopes.options.push({
+            text: scope.name,
+            value: scope.id,
+          });
+        }
+      });
+    });
+  },
+};
+</script>
+
+
+<style>
+</style>

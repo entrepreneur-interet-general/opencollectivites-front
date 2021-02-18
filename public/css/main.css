@@ -11,9 +11,14 @@
     column-count: 2;
 }
 
+.three-col {
+    column-count: 3;
+}
+
 .feedcard {
     min-width: 320px;
     padding: 10px;
+    page-break-inside: avoid;
 }
 
 .feed-more-link {

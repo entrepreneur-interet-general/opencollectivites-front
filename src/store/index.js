@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 import communes from './modules/communes'
 import header from './modules/header'
+import publications from './modules/publications'
 
 Vue.use(Vuex)
 
@@ -26,6 +27,7 @@ export default new Vuex.Store({
 
   modules: {
     communes,
+    publications,
     header
   }
 
