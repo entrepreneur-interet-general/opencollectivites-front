@@ -1,6 +1,9 @@
 .rf-header {
     box-shadow: none;
     border-bottom: 1.5px solid var(--g400);
+    background-image: url('/img/beta.png'); 
+    background-repeat: no-repeat;
+    background-position: right top;
 }
 
 .rf-bg--alt {
