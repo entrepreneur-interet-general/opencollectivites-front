@@ -161,11 +161,10 @@ export default {
   created() {
     this.listPageItems();
   },
-  updated() {
-    // Forcing re-render if the current page is not in the pageItems list
-    if (!this.pageItems.includes(this.currentPageNumber)) {
+  watch: {
+    $route() {
       this.listPageItems();
-    }
+    },
   },
 };
 </script>
