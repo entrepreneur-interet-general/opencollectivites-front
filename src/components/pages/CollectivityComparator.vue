@@ -1,6 +1,6 @@
 <template>
   <div id="opencollectivites">
-    <div id="comparator-header-block">
+    <div id="comparator-header-block" class="header-block">
       <div class="rf-container">
         <table
           class="comparator-header-table"
@@ -275,14 +275,6 @@ export default {
 </script>
 
 <style scoped>
-#comparator-header-block {
-  background: #fff;
-  position: fixed;
-  top: 0px;
-  width: 100%;
-  z-index: 100;
-}
-
 .comparator-header-table {
   width: 100%;
   min-height: 7em;
@@ -292,5 +284,9 @@ export default {
 .comparator-header-table th {
   font-weight: normal;
   border: 1px solid #ccc;
+}
+
+#comparator-header-block {
+  border-bottom: none;
 }
 </style>
