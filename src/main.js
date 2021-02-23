@@ -9,6 +9,9 @@ Vue.use(Vuex)
 
 Vue.config.productionTip = false
 
+import VuexRouterSync from 'vuex-router-sync';
+VuexRouterSync.sync(store, router);
+
 new Vue({
   router,
   store,
