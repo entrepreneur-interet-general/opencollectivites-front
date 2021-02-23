@@ -1,6 +1,11 @@
 <template>
   <div class="rf-container">
     <form id="publications-header-form" class="rf-grid-row">
+      <div class="rf-col-2">
+        <router-link :to="{ path: $store.state.route.from.fullPath }">
+          <BaseButton :isSecondary="true" label="<" />
+        </router-link>
+      </div>
       <BaseSelect
         class="rf-col-4"
         title="Thématique"
@@ -25,11 +30,13 @@
 
 <script>
 import BaseSelect from "../vue-gouvfr/BaseSelect.vue";
+import BaseButton from "../vue-gouvfr/BaseButton.vue";
 import { mapActions, mapGetters } from "vuex";
 
 export default {
   components: {
     BaseSelect,
+    BaseButton,
   },
   data() {
     return {
@@ -90,5 +97,5 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
 </style>

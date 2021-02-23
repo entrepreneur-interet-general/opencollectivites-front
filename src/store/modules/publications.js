@@ -48,6 +48,38 @@ export default {
                     })
             })
         },
+
+        listPublications({ dispatch, state }, filters) {
+            return new Promise((resolve) => {
+                dispatch('fetchPublications', { filters: filters }).then(() => {
+                    let cards = [];
+                    const publications = state.items.publications;
+                    for (const p of publications) {
+                        const card = { id: p.id, data: {} };
+
+                        // Type de contenu | Date de màj  •  Source 1, Source 2 par ordre alphabétique
+                        var document_type = "Publication";
+                        if (p.document_type.length) {
+                            document_type = p.document_type[0].name;
+                        }
+                        var detail = document_type + " | " + p.last_update;
+                        detail += " • " + p.source.editor[0].acronym;
+                        card.data.detail =
+                            detail.length < 200 ? detail : detail.substring(0, 200) + "…";
+
+                        card.data.url = p.url;
+                        card.data.title =
+                            p.title.length < 100 ? p.title : p.title.substring(0, 100) + "…";
+                        card.data.description =
+                            p.body.length < 300 ? p.body : p.body.substring(0, 200) + "…";
+                        cards.push(card);
+                    }
+                    console.log("the cards");
+                    console.log(cards);
+                    resolve(cards);
+                });
+            });
+        },
     },
 
     mutations: {
