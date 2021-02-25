@@ -164,10 +164,15 @@ export default {
   watch: {
     $route() {
       this.listPageItems();
+      this.$emit("update:currentpagenumber", this.currentPageNumber);
     },
   },
 };
 </script>
 
 <style>
+.rf-pagination {
+  margin: auto;
+  width: 70%;
+}
 </style>
