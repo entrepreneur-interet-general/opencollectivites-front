@@ -1,7 +1,7 @@
 <template>
   <div id="opencollectivites">
     <div class="header-block">
-      <PublicationFilters v-on:update:filters="listPublications($event)" />
+      <PublicationFilters />
     </div>
     <div class="rf-container">
       <BaseBreadcrumb currentPage="Publications" />
@@ -37,7 +37,7 @@ export default {
     pageSize: {
       type: Number,
       required: false,
-      default: 5,
+      default: 8,
     },
   },
 
@@ -52,9 +52,11 @@ export default {
   },
 
   computed: {
-    ...mapGetters("publications", ["getPublicationsNumber"]),
+    ...mapGetters("publications", ["getPublicationsCount"]),
     titleWithPublicationsNumber() {
-      return this.title + " (" + this.getPublicationsNumber + ")";
+      return (
+        this.title + " (" + this.getPublicationsCount("pagepublications") + ")"
+      );
     },
     numberOfPages() {
       return Math.ceil(this.cards.length / this.pageSize);
@@ -78,7 +80,11 @@ export default {
       return new Promise((resolve) => {
         this.dataFilters.topic = this.selectedIntFilter("topic");
         this.dataFilters.scope = this.selectedIntFilter("scope");
-        this.listPublications(this.dataFilters).then((cards) => {
+        console.log("datafilters", this.dataFilters);
+        this.listPublications({
+          id: "pagepublications",
+          filters: this.dataFilters,
+        }).then((cards) => {
           this.cards = cards;
           if (this.isPaginated) {
             const sliceStart = (this.currentPageNumber - 1) * this.pageSize;

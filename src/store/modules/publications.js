@@ -1,42 +1,48 @@
 import OpenCollectivitesDataService from '@/services/OpenCollectivitesDataService'
+import { countObjectProperties } from '@/utils'
 
 export default {
     namespaced: true,
 
     state: {
         items: {
-            publications: []
         },
     },
 
     getters: {
-        getPublications: (state) => {
-            return state.items.publications
-        },
-        getPublicationsNumber: (state) => {
-            return state.items.publications.length
+        getPublicationsCount: state => id => {
+            if (state.items[id]) {
+                return countObjectProperties(state.items[id].publications)
+            } else {
+                return 0
+            }
+
         },
 
     },
 
     actions: {
-        fetchPublications({ state, commit }, filters = {}) {
+        fetchPublications({ state, commit }, { id, filters }) {
             return new Promise((resolve) => {
+                console.log('the filters in fetch', filters)
                 OpenCollectivitesDataService.getPublications(filters)
                     .then((response) => {
                         console.log("📜 Fetching publications...")
                         const pubData = response.data;
-                        commit('setItem', { resource: 'publications', id: 'publications', item: pubData }, { root: true })
-                        resolve(state.items)
+                        const data = { filters: filters, publications: pubData }
+                        commit('setItem', { resource: 'publications', id: id, item: data }, { root: true })
+                        resolve(state.items[id])
                     })
             })
         },
 
-        listPublications({ dispatch, state }, filters) {
+        listPublications({ state, dispatch, commit }, { id, filters }) {
             return new Promise((resolve) => {
-                dispatch('fetchPublications', filters).then(() => {
+                console.log('the filters in lists', filters)
+                dispatch('fetchPublications', { id: id, filters: filters }).then(() => {
                     let cards = [];
-                    const publications = state.items.publications;
+                    const publications = state.items[id].publications;
+                    console.log(state.items)
                     for (const p of publications) {
                         const card = { id: p.id, data: {} };
 
@@ -55,12 +61,20 @@ export default {
                             p.title.length < 100 ? p.title : p.title.substring(0, 100) + "…";
                         card.data.description =
                             p.body.length < 300 ? p.body : p.body.substring(0, 200) + "…";
+
                         cards.push(card);
                     }
+                    const data = { filters: filters, publications: publications, cards: cards }
+                    commit('setItem', { resource: 'publications', id: id, item: data }, { root: true })
                     resolve(cards);
                 });
             });
         },
+
+        listPublicationsFromSeveralFilters({ dispatch }, { filtersList }) {
+            const ids = Object.keys(filtersList)
+            return Promise.all(ids.map(id => dispatch('listPublications', { id: id, filters: filtersList[id] })))
+        }
     },
 
     mutations: {
