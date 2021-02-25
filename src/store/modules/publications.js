@@ -5,38 +5,21 @@ export default {
 
     state: {
         items: {
-            topics: [],
-            scopes: [],
             publications: []
         },
     },
 
     getters: {
-        getTopics: (state) => {
-            return state.items.topics
-        },
-        getScopes: (state) => {
-            return state.items.scopes
-        },
         getPublications: (state) => {
             return state.items.publications
-        }
+        },
+        getPublicationsNumber: (state) => {
+            return state.items.publications.length
+        },
+
     },
 
     actions: {
-        fetchFilters({ state, commit }) {
-            return new Promise((resolve) => {
-                OpenCollectivitesDataService.publicationFilters()
-                    .then((response) => {
-                        console.log("💎 Fetching filters...")
-                        const filtersData = response.data;
-                        commit('setItem', { resource: 'publications', id: 'topics', item: filtersData.topics }, { root: true })
-                        commit('setItem', { resource: 'publications', id: 'scopes', item: filtersData.scopes }, { root: true })
-
-                        resolve(state.items)
-                    })
-            })
-        },
         fetchPublications({ state, commit }, filters = {}) {
             return new Promise((resolve) => {
                 OpenCollectivitesDataService.getPublications(filters)
@@ -51,7 +34,7 @@ export default {
 
         listPublications({ dispatch, state }, filters) {
             return new Promise((resolve) => {
-                dispatch('fetchPublications', { filters: filters }).then(() => {
+                dispatch('fetchPublications', filters).then(() => {
                     let cards = [];
                     const publications = state.items.publications;
                     for (const p of publications) {
@@ -74,8 +57,6 @@ export default {
                             p.body.length < 300 ? p.body : p.body.substring(0, 200) + "…";
                         cards.push(card);
                     }
-                    console.log("the cards");
-                    console.log(cards);
                     resolve(cards);
                 });
             });

@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 import communes from './modules/communes'
 import header from './modules/header'
 import publications from './modules/publications'
+import publicationsFilterLists from './modules/publicationsFilterLists'
 
 Vue.use(Vuex)
 
@@ -28,6 +29,7 @@ export default new Vuex.Store({
   modules: {
     communes,
     publications,
+    publicationsFilterLists,
     header
   }
 

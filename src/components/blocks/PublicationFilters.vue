@@ -45,11 +45,11 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("publications", ["getTopics", "getScopes"]),
+    ...mapGetters("publicationsFilterLists", ["getTopics", "getScopes"]),
   },
   methods: {
     ...mapActions("header", ["minimizeHeader"]),
-    ...mapActions("publications", ["fetchFilters"]),
+    ...mapActions("publicationsFilterLists", ["fetchFilterLists"]),
     queryWithParameterValue(parameter, value) {
       const query = Object.assign({}, this.$route.query);
       query[parameter] = value;
@@ -71,7 +71,7 @@ export default {
   created() {
     return new Promise((resolve) => {
       if (!this.getTopics.length) {
-        resolve(this.fetchFilters());
+        resolve(this.fetchFilterLists());
       } else {
         resolve(this.getTopics);
       }

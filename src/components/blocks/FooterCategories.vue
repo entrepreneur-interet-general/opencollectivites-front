@@ -29,15 +29,15 @@ export default {
     };
   },
   methods: {
-    ...mapActions("publications", ["fetchFilters"]),
+    ...mapActions("publicationsFilterLists", ["fetchFilterLists"]),
   },
   computed: {
-    ...mapGetters("publications", ["getTopics"]),
+    ...mapGetters("publicationsFilterLists", ["getTopics"]),
   },
   created() {
     return new Promise((resolve) => {
       if (!this.getTopics.length) {
-        resolve(this.fetchFilters());
+        resolve(this.fetchFilterLists());
       } else {
         resolve(this.getTopics);
       }
