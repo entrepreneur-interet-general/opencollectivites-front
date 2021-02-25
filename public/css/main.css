@@ -7,12 +7,9 @@
     background-color: var(--g200);
 }
 
-.two-col {
-    column-count: 2;
-}
-
-.three-col {
-    column-count: 3;
+.col-auto {
+    column-count: auto;
+    column-width: 21rem;
 }
 
 .feedcard {
