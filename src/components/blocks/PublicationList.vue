@@ -1,6 +1,6 @@
 <template>
   <div class="bloc-publications">
-    <div class="three-col">
+    <div class="col-auto">
       <div class="rf-col-4 feedcard" v-for="card in cards" :key="card.id">
         <BaseCard :card_data="card.data" :noArrow="true" />
       </div>
