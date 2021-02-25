@@ -6,40 +6,62 @@
     <div class="rf-container">
       <BaseBreadcrumb currentPage="Publications" />
 
-      <PublicationList
-        title="Études, statistiques et outils locaux"
-        :cards="cards"
+      <h1>{{ titleWithPublicationsNumber }}</h1>
+      <BasePagination
+        :numberOfPages="numberOfPages"
+        v-if="isPaginated"
+        v-bind:currentpagenumber.sync="currentPageNumber"
       />
+      <PublicationList :cards="cardsSlice" />
+      <BasePagination :numberOfPages="numberOfPages" v-if="isPaginated" />
     </div>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-import PublicationList from "@/components/blocks/PublicationList.vue";
 import BaseBreadcrumb from "@/components/vue-gouvfr/BaseBreadcrumb.vue";
-import PublicationFilters from "../blocks/PublicationFilters.vue";
+import PublicationFilters from "@/components/blocks/PublicationFilters.vue";
+import PublicationList from "../blocks/PublicationList.vue";
+import BasePagination from "../vue-gouvfr/BasePagination.vue";
 
 export default {
   components: {
-    PublicationList,
     PublicationFilters,
     BaseBreadcrumb,
+    PublicationList,
+    BasePagination,
+  },
+
+  props: {
+    pageSize: {
+      type: Number,
+      required: false,
+      default: 5,
+    },
   },
 
   data() {
     return {
       dataFilters: {},
       cards: [],
+      cardsSlice: [],
+      title: "Études, statistiques et outils locaux",
+      currentPageNumber: 1,
     };
   },
 
   computed: {
-    ...mapGetters("publications", [
-      "getPublications",
-      "getTopics",
-      "getScopes",
-    ]),
+    ...mapGetters("publications", ["getPublicationsNumber"]),
+    titleWithPublicationsNumber() {
+      return this.title + " (" + this.getPublicationsNumber + ")";
+    },
+    numberOfPages() {
+      return Math.ceil(this.cards.length / this.pageSize);
+    },
+    isPaginated() {
+      return this.numberOfPages > 1;
+    },
   },
 
   methods: {
@@ -52,21 +74,34 @@ export default {
         return null;
       }
     },
+    updateContents() {
+      return new Promise((resolve) => {
+        this.dataFilters.topic = this.selectedIntFilter("topic");
+        this.dataFilters.scope = this.selectedIntFilter("scope");
+        this.listPublications(this.dataFilters).then((cards) => {
+          this.cards = cards;
+          if (this.isPaginated) {
+            const sliceStart = (this.currentPageNumber - 1) * this.pageSize;
+            const sliceEnd = sliceStart + this.pageSize;
+            console.log(sliceStart, sliceEnd);
+            this.cardsSlice = this.cards.slice(sliceStart, sliceEnd);
+          } else {
+            this.cardsSlice = this.cards;
+          }
+          resolve(this.cards);
+        });
+      });
+    },
+  },
+  watch: {
+    $route() {
+      this.updateContents();
+    },
   },
 
   created() {
     this.minimizeHeader();
-    if (this.filters) {
-      this.dataFilters = this.filters;
-    } else {
-      this.dataFilters.topic = this.selectedIntFilter("topic");
-      this.dataFilters.scope = this.selectedIntFilter("scope");
-      this.dataFilters.page = this.selectedIntFilter("page");
-    }
-    this.listPublications(this.dataFilters).then((cards) => {
-      console.log("my cards");
-      console.log(cards);
-      this.cards = cards;
+    this.updateContents().then(() => {
       this.$emit("ready");
     });
   },
