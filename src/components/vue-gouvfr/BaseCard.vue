@@ -16,7 +16,9 @@
     <div class="rf-card__body">
       <p class="rf-card__detail">{{ card_data.detail }}</p>
       <h4 class="rf-card__lead">
-        <a :href="card_data.url" class="rf-card__link">{{ card_data.title }}</a>
+        <a :href="card_data.url" class="rf-card__link" :target="targetValue">
+          {{ card_data.title }}
+        </a>
       </h4>
       <p class="rf-card__desc">
         {{ card_data.description }}
@@ -42,6 +44,16 @@ export default {
     horizontal: {
       type: Boolean,
       default: false,
+    },
+    newTab: {
+      type: Boolean,
+      default: false,
+    },
+  },
+
+  computed: {
+    targetValue() {
+      return this.newTab ? "_blank" : "_self";
     },
   },
 };
