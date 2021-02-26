@@ -1,13 +1,13 @@
 <template>
   <div id="opencollectivites">
     <HomeSearch />
-    <!-- <HomeFeed /> -->
+    <HomeFeed />
   </div>
 </template>
 
 <script>
 import HomeSearch from "@/components/blocks/HomeSearch";
-/* import HomeFeed from "@/components/blocks/HomeFeed"; */
+import HomeFeed from "@/components/blocks/HomeFeed";
 import { mapActions } from "vuex";
 
 export default {
@@ -15,7 +15,7 @@ export default {
 
   components: {
     HomeSearch,
-    /* HomeFeed, */
+    HomeFeed,
   },
 
   methods: {
