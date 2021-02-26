@@ -35,6 +35,7 @@
             :fullWidth="true"
             :force10="true"
           />
+          <SourceAspicBanatic :year="max_year" file="Données communes" />
 
           <BaseTable
             caption="Emploi - chômage"
@@ -42,6 +43,7 @@
             :fullWidth="true"
             :force10="true"
           />
+          <SourceAspicBanatic :year="max_year" file="Données communes" />
 
           <BaseTable
             caption="Niveau de vie"
@@ -49,6 +51,7 @@
             :fullWidth="true"
             :force10="true"
           />
+          <SourceAspicBanatic :year="max_year" file="Données communes" />
 
           <h2 id="intercommunalites-zonage">Intercommunalités et zonage</h2>
           <BaseTable
@@ -62,6 +65,8 @@
             :tableContent="zonageData"
             :fullWidth="true"
           />
+          <SourceAspicBanatic :year="max_year" file="Données communes" />
+          <br />
           <a
             title="Observatoire des Territoires"
             href="https://www.observatoire-des-territoires.gouv.fr/"
@@ -82,6 +87,7 @@
             :fullWidth="true"
             :force10="true"
           />
+          <SourceAspicBanatic :year="max_year" file="Données communes" />
 
           <BaseTable
             caption="Dotation « Élu local »"
@@ -89,6 +95,7 @@
             :fullWidth="true"
             :force10="true"
           />
+          <SourceAspicBanatic :year="max_year" file="Données communes" />
 
           <BaseTable
             caption="Fonds national de péréquation des ressources intercommunales et communales (FPIC)"
@@ -96,6 +103,8 @@
             :fullWidth="true"
             :force10="true"
           />
+          <SourceAspicBanatic :year="max_year" file="Données communes" />
+          <br />
           <a
             title="Dotation - Direction générale des Collectivités locales"
             href="http://www.dotations-dgcl.interieur.gouv.fr/"
@@ -130,6 +139,7 @@ import CollectivityCompareSelector from "../blocks/CollectivityCompareSelector.v
 import { formatNumber } from "@/utils";
 
 import { mapActions } from "vuex";
+import SourceAspicBanatic from "../blocks/SourceAspicBanatic.vue";
 
 export default {
   components: {
@@ -138,6 +148,7 @@ export default {
     BaseTable,
     BaseSummary,
     CollectivityCompareSelector,
+    SourceAspicBanatic,
   },
 
   name: "PlaceSummary",
@@ -150,6 +161,7 @@ export default {
       region: {},
       aspic: {},
       title: "",
+      max_year: 0,
       navigationTiles: [],
       popData: [],
       emploiChomageData: [],
@@ -241,41 +253,42 @@ export default {
         });
 
         const years = this.collectivity.years;
+        this.max_year = this.collectivity.T150.max_year;
 
         this.popData = [
           [
             `Population totale en vigueur en ${years.PopTot}`,
-            formatNumber(this.collectivity.PopTot),
+            formatNumber(this.collectivity.T150.PopTot),
           ],
           [
             `Population municipale en vigueur en ${years.PopMuni}`,
-            formatNumber(this.collectivity.PopMuni),
+            formatNumber(this.collectivity.T150.PopMuni),
           ],
           [
-            "Densité démographique (population totale/superficie géographique, en hab/km²)",
-            formatNumber(this.collectivity.Densité),
+            `Densité démographique en ${years.Densité} (population totale/superficie géographique, en hab/km²)`,
+            formatNumber(this.collectivity.T150.Densité),
           ],
           [
             `Variation annuelle de la population entre ${years.TCAM} (en %)`,
-            formatNumber(this.collectivity.TCAM),
+            formatNumber(this.collectivity.T150.TCAM),
           ],
         ];
 
         this.emploiChomageData = [
           [
             `Taux d’activité des 15 à 64 ans en ${years["PopActive1564%"]} (en %)`,
-            formatNumber(this.collectivity["PopActive1564%"]),
+            formatNumber(this.collectivity.T150["PopActive1564%"]),
           ],
           [
             `Taux de chômage des 15 à 64 ans en ${years["PopChom1564%"]} (en %)`,
-            formatNumber(this.collectivity["PopChom1564%"]),
+            formatNumber(this.collectivity.T150["PopChom1564%"]),
           ],
         ];
 
         this.niveaudevieData = [
           [
             `Revenu fiscal médian des ménages par unité de consommation ${years.RevenuFiscal} (en €)`,
-            formatNumber(this.collectivity.RevenuFiscal),
+            formatNumber(this.collectivity.T150.RevenuFiscal),
           ],
         ];
 
@@ -298,38 +311,46 @@ export default {
         this.zonageData = [
           [
             "Classement de la commune en zone de revitalisation rurale (ZRR)",
-            this.collectivity.ZRR ? "Classée en ZRR" : "Non classée",
+            this.collectivity.T150.ZRR ? "Classée en ZRR" : "Non classée",
+          ],
+          [
+            "Commune classée en zone urbaine sensible (ZUS)",
+            this.collectivity.T150.ZUS ? "Classée en ZUS" : "Non classée",
           ],
           [
             "Commune classée en zone de montagne",
-            this.collectivity.Montagne ? "Classée" : "Non classée",
+            this.collectivity.T150.Montagne ? "Classée" : "Non classée",
+          ],
+          [
+            "Commune classée comme touristique",
+            this.collectivity.T150.Touristique ? "Classée" : "Non classée",
           ],
         ];
 
         this.dotationGlobaleData = [
           [
             "Dotation globale de fonctionnement totale (en €)",
-            formatNumber(this.collectivity.DGF_Totale),
+            formatNumber(this.collectivity.T150.DGF_Totale),
           ],
           [
             "Dont dotation forfaitaire (en €)",
-            formatNumber(this.collectivity.Forfaitaire),
+            formatNumber(this.collectivity.T150.Forfaitaire),
           ],
           [
             " - dotation de solidarité urbaine et de cohésion sociale (DSU) (en €)",
-            formatNumber(this.collectivity.DSU),
+            formatNumber(this.collectivity.T150.DSU),
           ],
           [
             " - dotation de solidarité rurale (DSR) (en €)",
-            formatNumber(this.collectivity.DSR),
+            formatNumber(this.collectivity.T150.DSR),
           ],
           [
             " - dotation de péréquation totale (DNP) (en €)",
-            formatNumber(this.collectivity.DNP),
+            formatNumber(this.collectivity.T150.DNP),
           ],
           [
             "DGF par habitant (en €)",
-            formatNumber(this.collectivity.DGFParHab),
+            formatNumber(this.collectivity.T150.DGFParHab),
           ],
           ["Population « DGF »", formatNumber(this.collectivity.PopDGF)],
         ];
@@ -337,23 +358,26 @@ export default {
         this.dotationEluLocalData = [
           [
             "Dotation élu local (en €)",
-            formatNumber(this.collectivity.DotationEluLocal),
+            formatNumber(this.collectivity.T150.DotationEluLocal),
           ],
         ];
 
         this.dotationFpicData = [
-          ["Solde net FPIC (en €)", formatNumber(this.collectivity.SoldeFPIC)],
+          [
+            "Solde net FPIC (en €)",
+            formatNumber(this.collectivity.T150.SoldeFPIC),
+          ],
           [
             "Dont reversement au profit de la commune (en €)",
-            formatNumber(this.collectivity.AttributionFPIC),
+            formatNumber(this.collectivity.T150.AttributionFPIC),
           ],
           [
             "Dont prélèvement de la commune (en €)",
-            formatNumber(this.collectivity.ContributionFPIC),
+            formatNumber(this.collectivity.T150.ContributionFPIC),
           ],
           [
             "FPIC par habitant (en €)",
-            formatNumber(this.collectivity.SoldeFPIC_DGF),
+            formatNumber(this.collectivity.T150.SoldeFPIC_DGF),
           ],
         ];
         this.$emit("ready");

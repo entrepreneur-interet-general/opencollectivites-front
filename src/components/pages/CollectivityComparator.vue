@@ -168,7 +168,7 @@ export default {
         [`Population totale en vigueur en ${years.PopTot}`],
         [`Population municipale en vigueur en ${years.PopMuni}`],
         [
-          "Densité démographique (population totale/superficie géographique, en hab/km²)",
+          `Densité démographique en ${years.Densité} (population totale/superficie géographique, en hab/km²)`,
         ],
         [`Variation annuelle de la population entre ${years.TCAM} (en %)`],
       ];
@@ -188,7 +188,9 @@ export default {
 
       this.zonageData = [
         ["Classement de la commune en zone de revitalisation rurale (ZRR)"],
+        ["Classement de la commune en zone urbaine sensible (ZUS)"],
         ["Commune classée en zone de montagne"],
+        ["Commune classée comme touristique"],
       ];
 
       this.dotationGlobaleData = [
@@ -214,56 +216,72 @@ export default {
 
       // Fill tables
       for (const siren of this.sirens) {
-        this.popData[0].push(formatNumber(communes[siren].PopTot));
-        this.popData[1].push(formatNumber(communes[siren].PopMuni));
-        this.popData[2].push(formatNumber(communes[siren].Densité));
-        this.popData[3].push(formatNumber(communes[siren].TCAM));
+        this.popData[0].push(formatNumber(communes[siren].T150.PopTot));
+        this.popData[1].push(formatNumber(communes[siren].T150.PopMuni));
+        this.popData[2].push(formatNumber(communes[siren].T150.Densité));
+        this.popData[3].push(formatNumber(communes[siren].T150.TCAM));
 
         this.emploiChomageData[0].push(
-          formatNumber(communes[siren]["PopActive1564%"])
+          formatNumber(communes[siren].T150["PopActive1564%"])
         );
         this.emploiChomageData[1].push(
-          formatNumber(communes[siren]["PopChom1564%"])
+          formatNumber(communes[siren].T150["PopChom1564%"])
         );
 
         this.niveaudevieData[0].push(
-          formatNumber(communes[siren].RevenuFiscal)
+          formatNumber(communes[siren].T150.RevenuFiscal)
         );
 
         this.zonageData[0].push(
-          communes[siren].ZRR ? "Classée en ZRR" : "Non classée"
+          communes[siren].T150.ZRR ? "Classée en ZRR" : "Non classée"
         );
         this.zonageData[1].push(
-          communes[siren].Montagne ? "Classée en ZRR" : "Non classée"
+          communes[siren].T150.ZUS ? "Classée" : "Non classée"
+        );
+        this.zonageData[2].push(
+          communes[siren].T150.Montagne ? "Classée" : "Non classée"
+        );
+        this.zonageData[3].push(
+          communes[siren].T150.Touristique ? "Classée" : "Non classée"
         );
 
         this.dotationGlobaleData[0].push(
-          formatNumber(communes[siren].DGF_Totale)
+          formatNumber(communes[siren].T150.DGF_Totale)
         );
         this.dotationGlobaleData[1].push(
-          formatNumber(communes[siren].Forfaitaire)
+          formatNumber(communes[siren].T150.Forfaitaire)
         );
-        this.dotationGlobaleData[2].push(formatNumber(communes[siren].DSU));
-        this.dotationGlobaleData[3].push(formatNumber(communes[siren].DSR));
-        this.dotationGlobaleData[4].push(formatNumber(communes[siren].DNP));
+        this.dotationGlobaleData[2].push(
+          formatNumber(communes[siren].T150.DSU)
+        );
+        this.dotationGlobaleData[3].push(
+          formatNumber(communes[siren].T150.DSR)
+        );
+        this.dotationGlobaleData[4].push(
+          formatNumber(communes[siren].T150.DNP)
+        );
         this.dotationGlobaleData[5].push(
-          formatNumber(communes[siren].DGFParHab)
+          formatNumber(communes[siren].T150.DGFParHab)
         );
-        this.dotationGlobaleData[6].push(formatNumber(communes[siren].PopDGF));
+        this.dotationGlobaleData[6].push(
+          formatNumber(communes[siren].T150.PopDGF)
+        );
 
         this.dotationEluLocalData[0].push(
-          formatNumber(communes[siren].DotationEluLocal)
+          formatNumber(communes[siren].T150.DotationEluLocal)
         );
 
-        this.dotationFpicData[0].push(formatNumber(communes[siren].SoldeFPIC));
+        this.dotationFpicData[0].push(
+          formatNumber(communes[siren].T150.SoldeFPIC)
+        );
         this.dotationFpicData[1].push(
-          formatNumber(communes[siren].AttributionFPIC)
+          formatNumber(communes[siren].T150.AttributionFPIC)
         );
         this.dotationFpicData[2].push(
-          formatNumber(communes[siren].ContributionFPIC)
+          formatNumber(communes[siren].T150.ContributionFPIC)
         );
         this.dotationFpicData[3].push(
-          formatNumber(communes[siren].SoldeFPIC_DGF)
+          formatNumber(communes[siren].T150.SoldeFPIC_DGF)
         );
       }
 
