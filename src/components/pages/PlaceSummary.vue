@@ -106,8 +106,8 @@
             Plus d’informations sur le site dotations de la DGCL
           </a>
 
-          <h2 id="communes-limitrophes-comparaison">
-            Communes limitrophes et comparaison
+          <h2 id="comparaison-autres-communes">
+            Comparaison avec d’autres communes
           </h2>
           <CollectivityCompareSelector type="commune" :origin="siren" />
 
@@ -170,8 +170,8 @@ export default {
           title: "Ressources financières et fiscales",
         },
         {
-          href: "#communes-limitrophes-comparaison",
-          title: "Communes limitrophes et comparaison",
+          href: "#comparaison-autres-communes",
+          title: "Comparaison avec d’autres communes",
         },
         {
           href: "#outils-pratiques",
