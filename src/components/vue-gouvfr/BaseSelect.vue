@@ -32,8 +32,14 @@
       :disabled="isDisabled === true"
       v-if="select_data.optionGroups"
     >
-      <option value="" disabled hidden :selected="!queryValue">
-        {{ defaultOption }}
+      <option
+        value=""
+        :selected="!queryValue"
+        :disabled="defaultOption.isDisabled === true"
+        :hidden="defaultOption.isHidden === true"
+        @click="$emit('input', null)"
+      >
+        {{ defaultOption.text }}
       </option>
       <optgroup
         v-for="group in select_data.optionGroups"
@@ -62,8 +68,14 @@
       :disabled="isDisabled === true"
       v-else
     >
-      <option value="" :selected="!queryValue" disabled hidden>
-        {{ defaultOption }}
+      <option
+        value=""
+        :selected="!queryValue"
+        :disabled="defaultOption.isDisabled === true"
+        :hidden="defaultOption.isHidden === true"
+        @click="$emit('input', null)"
+      >
+        {{ defaultOption.text }}
       </option>
       <option
         v-for="option in select_data.options"
@@ -117,8 +129,14 @@ export default {
       default: "",
     },
     defaultOption: {
-      type: String,
-      default: "- Select -",
+      type: Object,
+      default() {
+        return {
+          isDisabled: true,
+          isHidden: true,
+          text: "- Select -",
+        };
+      },
     },
     queryParam: {
       type: String,

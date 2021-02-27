@@ -10,7 +10,7 @@
         class="rf-col-4"
         title="Thématique"
         :select_data="topics"
-        defaultOption="- Thématique -"
+        :defaultOption="topicsDefaultOption"
         queryParam="topic"
         @input="setParam('topic', $event)"
       />
@@ -19,7 +19,7 @@
         class="rf-col-4"
         title="Portée"
         :select_data="scopes"
-        defaultOption="- Portée -"
+        :defaultOption="scopesDefaultOption"
         queryParam="scope"
         @input="setParam('scope', $event)"
       />
@@ -42,6 +42,16 @@ export default {
     return {
       topics: { label: "Thématique", options: [] },
       scopes: { label: "Portée", options: [] },
+      topicsDefaultOption: {
+        isDisabled: false,
+        isHidden: false,
+        text: "- Thématique -",
+      },
+      scopesDefaultOption: {
+        isDisabled: false,
+        isHidden: false,
+        text: "- Portée -",
+      },
     };
   },
   computed: {
@@ -52,7 +62,11 @@ export default {
     ...mapActions("publicationsFilterLists", ["fetchFilterLists"]),
     queryWithParameterValue(parameter, value) {
       const query = Object.assign({}, this.$route.query);
-      query[parameter] = value;
+      if (value) {
+        query[parameter] = value;
+      } else {
+        delete query[parameter];
+      }
       return query;
     },
     routeWithParameterValue(parameter, value) {
@@ -62,7 +76,11 @@ export default {
       };
     },
     setParam(parameter, value) {
-      const newRoute = this.routeWithParameterValue(parameter, value.value);
+      let passedValue = null;
+      if (value) {
+        passedValue = value.value;
+      }
+      const newRoute = this.routeWithParameterValue(parameter, passedValue);
       this.$router.push(newRoute);
       this.$emit("update:filters", newRoute.query);
     },
