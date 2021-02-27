@@ -110,7 +110,7 @@ export default {
             }
           })
           .catch((e) => {
-            console.log("Service not responding");
+            console.log("🙅  Service not responding");
             console.log(e);
           });
       }
@@ -126,7 +126,6 @@ export default {
         params[`siren${n}`] = p.value;
         n++;
       }
-      console.log(params);
 
       this.$router.push({
         name: "collectivityComparator",

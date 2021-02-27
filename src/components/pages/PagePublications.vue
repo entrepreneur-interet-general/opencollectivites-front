@@ -80,7 +80,6 @@ export default {
       return new Promise((resolve) => {
         this.dataFilters.topic = this.selectedIntFilter("topic");
         this.dataFilters.scope = this.selectedIntFilter("scope");
-        console.log("datafilters", this.dataFilters);
         this.listPublications({
           id: "pagepublications",
           filters: this.dataFilters,
@@ -89,7 +88,6 @@ export default {
           if (this.isPaginated) {
             const sliceStart = (this.currentPageNumber - 1) * this.pageSize;
             const sliceEnd = sliceStart + this.pageSize;
-            console.log(sliceStart, sliceEnd);
             this.cardsSlice = this.cards.slice(sliceStart, sliceEnd);
           } else {
             this.cardsSlice = this.cards;

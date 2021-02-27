@@ -24,7 +24,6 @@ export default {
     actions: {
         fetchPublications({ state, commit }, { id, filters }) {
             return new Promise((resolve) => {
-                console.log('the filters in fetch', filters)
                 OpenCollectivitesDataService.getPublications(filters)
                     .then((response) => {
                         console.log("📜 Fetching publications...")
@@ -38,11 +37,9 @@ export default {
 
         listPublications({ state, dispatch, commit }, { id, filters }) {
             return new Promise((resolve) => {
-                console.log('the filters in lists', filters)
                 dispatch('fetchPublications', { id: id, filters: filters }).then(() => {
                     let cards = [];
                     const publications = state.items[id].publications;
-                    console.log(state.items)
                     for (const p of publications) {
                         const card = { id: p.id, data: {} };
 

@@ -73,7 +73,7 @@ export default {
             this.isLoading = false;
           })
           .catch((e) => {
-            console.log("Service not responding");
+            console.log("🙅  Service not responding");
             console.log(e);
           });
       }
