@@ -221,6 +221,13 @@
         </li>
       </ul>
 
+      <h2 id="Gestion-des-cookies">Gestion des cookies</h2>
+      <p>
+        Ce portail n'utilise aucun cookie nécessitant un consentement des
+        usagers. C'est pourquoi vous n'avez pas à accepter leur utilisation
+        avant de poursuivre votre navigation.
+      </p>
+
       <h2 id="Liens-hypertextes">Liens hypertextes</h2>
       <p>
         Tout site public ou privé est autorisé à établir, sans autorisation

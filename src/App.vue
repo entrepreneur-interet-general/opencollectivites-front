@@ -52,7 +52,10 @@ export default {
           url: "/mentions-legales#Donnees-personnelles",
           title: "Données personnelles",
         },
-        { url: "/mentions-legales#Cookies", title: "Gestion des cookies" },
+        {
+          url: "/mentions-legales#Gestion-des-cookies",
+          title: "Gestion des cookies",
+        },
       ],
     };
   },
