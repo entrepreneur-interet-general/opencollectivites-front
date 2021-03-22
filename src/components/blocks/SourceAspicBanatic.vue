@@ -5,9 +5,9 @@
       href="https://www.data.gouv.fr/fr/datasets/les-donnees-contextuelles-des-intercommunalites-et-autres-structures-territoriales/"
       target="_blank"
     >
-      Aspic/Banatic </a
-    ><span v-if="file">(fichier {{ file }})</span>. Année : {{ year }}, sauf
-    précision.
+      Aspic/Banatic<span v-if="file"> (fichier {{ file }})</span>.
+    </a>
+    Année : {{ year }}, sauf précision.
   </p>
 </template>
 
