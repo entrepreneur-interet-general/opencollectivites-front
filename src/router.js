@@ -30,6 +30,11 @@ export default new Router({
             props: true
         },
         {
+            path: "/mentions-legales",
+            name: "LegalNotice",
+            component: () => import("./components/pages/PageLegalNotice.vue")
+        },
+        {
             path: "/a-venir",
             name: "NotYet",
             component: () => import("./components/pages/PageNotYet.vue")

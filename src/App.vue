@@ -11,7 +11,10 @@
     <AppSpinner v-show="!showPage" />
 
     <FooterCategories />
-    <TheFooter brand_name="République<br />française" />
+    <TheFooter
+      brand_name="République<br />française"
+      :legal_links="legal_links"
+    />
   </div>
 </template>
 
@@ -37,6 +40,20 @@ export default {
       },
 
       showPage: false,
+
+      legal_links: [
+        { url: "#", title: "Plan du site" },
+        {
+          url: "#",
+          title: "Accessibilité: partiellement conforme",
+        },
+        { url: "/mentions-legales#", title: "Mentions légales" },
+        {
+          url: "/mentions-legales#Donnees-personnelles",
+          title: "Données personnelles",
+        },
+        { url: "/mentions-legales#Cookies", title: "Gestion des cookies" },
+      ],
     };
   },
 

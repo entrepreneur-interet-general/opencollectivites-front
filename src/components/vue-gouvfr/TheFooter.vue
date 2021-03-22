@@ -25,20 +25,8 @@
       </div>
       <div class="rf-footer__bottom">
         <ul class="rf-footer__bottom-list">
-          <li>
-            <a href="#">Plan du site</a>
-          </li>
-          <li>
-            <a href="#">Accessibilité: {{ compliance }} conforme</a>
-          </li>
-          <li>
-            <a href="#">Mentions légales</a>
-          </li>
-          <li>
-            <a href="#">Données personnelles</a>
-          </li>
-          <li>
-            <a href="#">Gestion des cookies</a>
+          <li v-for="(link, index) in legal_links" :key="index">
+            <a :href="link.url">{{ link.title }}</a>
           </li>
         </ul>
         <div class="rf-footer__bottom-copy">© République Française 2020</div>
@@ -59,9 +47,20 @@ export default {
     content: {
       type: String,
     },
-    compliance: {
-      type: String,
-      default: "non/partiellement/totalement",
+    legal_links: {
+      type: Array,
+      default() {
+        return [
+          { url: "#", title: "Plan du site" },
+          {
+            url: "#",
+            title: "Accessibilité: non/partiellement/totalement conforme",
+          },
+          { url: "#", title: "Mentions légales" },
+          { url: "#", title: "Données personnelles" },
+          { url: "#", title: "Gestion des cookies" },
+        ];
+      },
     },
   },
   components: { BaseBrand },
