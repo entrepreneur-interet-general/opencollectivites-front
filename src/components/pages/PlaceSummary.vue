@@ -161,7 +161,7 @@ export default {
       region: {},
       aspic: {},
       title: "",
-      max_year: 0,
+      max_year: "0",
       navigationTiles: [],
       popData: [],
       emploiChomageData: [],
