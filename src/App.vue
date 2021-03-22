@@ -3,7 +3,8 @@
     <TheHeader
       service_name="Open Collectivités"
       brand_name="Ministère <br />de la Cohésion <br />des territoires <br />et des
-              Relations <br />avec les collectivités <br />territoriales"
+        Relations <br />avec les collectivités <br />territoriales"
+      tagline="Un service de la DGCL"
       :tools="tools"
     />
     <router-view :key="$route.path" v-show="showPage" @ready="pageReady" />
