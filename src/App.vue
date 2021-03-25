@@ -26,6 +26,14 @@ import AppSpinner from "./components/blocks/AppSpinner.vue";
 
 export default {
   name: "app",
+
+  metaInfo: {
+    // if no subcomponents specify a metaInfo.title, this title will be used
+    title: "Open Collectivités",
+    // all titles will be injected into this template
+    titleTemplate: "%s | " + process.env.VUE_APP_TITLE,
+  },
+
   components: {
     TheHeader,
     TheFooter,

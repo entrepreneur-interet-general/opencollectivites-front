@@ -15,6 +15,10 @@ import BaseCallout from "@/components/vue-gouvfr/BaseCallout.vue";
 import { mapActions } from "vuex";
 
 export default {
+  metaInfo: {
+    title: "Erreur",
+  },
+
   components: { BaseCallout },
 
   methods: {

@@ -13,6 +13,10 @@ import { mapActions } from "vuex";
 export default {
   name: "Homepage",
 
+  metaInfo: {
+    title: "Accueil",
+  },
+
   components: {
     HomeSearch,
     HomeFeed,

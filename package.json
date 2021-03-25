@@ -15,6 +15,7 @@
     "dotenv-webpack": "^6.0.0",
     "joi": "^17.3.0",
     "vue": "^2.6.11",
+    "vue-meta": "^2.4.0",
     "vue-multiselect": "^2.1.6",
     "vue-router": "^3.4.9",
     "vuex": "^3.6.0",

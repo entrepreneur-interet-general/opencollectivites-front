@@ -94,6 +94,11 @@ export default {
     BaseTable,
     BaseButton,
   },
+
+  metaInfo: {
+    title: "Comparateur",
+  },
+
   props: {
     type: { type: String, required: true },
     siren1: { type: String, required: true },

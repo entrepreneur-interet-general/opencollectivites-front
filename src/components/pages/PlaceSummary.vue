@@ -142,6 +142,12 @@ import { mapActions } from "vuex";
 import SourceAspicBanatic from "../blocks/SourceAspicBanatic.vue";
 
 export default {
+  metaInfo() {
+    return {
+      title: this.title,
+    };
+  },
+
   components: {
     BaseBreadcrumb,
     BaseTile,
