@@ -228,6 +228,35 @@
         avant de poursuivre votre navigation.
       </p>
 
+      <h3 id="cookies-strictement-necessaires">
+        Cookies strictement nécessaires
+      </h3>
+      <p>
+        Ce portail utilise les cookies suivants, nécessaires à son
+        fonctionnement. Sans eux, vous ne pourrez pas l’utiliser normalement. Il
+        s'agit de cookies déposés par Open Collectivités qui ne concernent que
+        son fonctionnement.
+      </p>
+
+      <dl>
+        <dt>csrftoken</dt>
+        <dd>
+          Token Django pour protection anti CSRF : ce cookie de sécurité permet
+          de se protéger des attaques de type
+          <a
+            href="https://fr.wikipedia.org/wiki/Cross-site_request_forgery"
+            target="_blank"
+            >Cross-Site Request Forgery (CSRF)</a
+          >
+        </dd>
+
+        <dt>scheme</dt>
+        <dd>
+          Ce cookie fonctionnel sert à mémoriser le thème sélectionné (clair ou
+          sombre)
+        </dd>
+      </dl>
+
       <h2 id="Liens-hypertextes">Liens hypertextes</h2>
       <p>
         Tout site public ou privé est autorisé à établir, sans autorisation
@@ -269,6 +298,10 @@
 import { mapActions } from "vuex";
 
 export default {
+  metaInfo: {
+    title: "Mentions légales",
+  },
+
   methods: {
     ...mapActions("header", ["maximizeHeader"]),
   },
@@ -281,4 +314,7 @@ export default {
 </script>
 
 <style>
+dt {
+  font-weight: bold;
+}
 </style>
