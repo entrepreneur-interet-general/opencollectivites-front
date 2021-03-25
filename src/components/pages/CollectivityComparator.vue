@@ -95,8 +95,10 @@ export default {
     BaseButton,
   },
 
-  metaInfo: {
-    title: "Comparateur",
+  metaInfo() {
+    return {
+      title: this.title,
+    };
   },
 
   props: {
@@ -117,6 +119,7 @@ export default {
       dotationGlobaleData: [],
       dotationEluLocalData: [],
       dotationFpicData: [],
+      title: "Comparaison",
     };
   },
 
@@ -165,6 +168,7 @@ export default {
       for (const siren of this.sirens) {
         this.placesNames.push(communes[siren].name);
       }
+      this.title += " : " + this.placesNames.join(" - ");
 
       const years = response[0].years;
 
