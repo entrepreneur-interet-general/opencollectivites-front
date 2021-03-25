@@ -1,21 +1,29 @@
 <template>
-  <div id="full-page-message" class="rf-container rf-info">
-    <BaseCallout
-      title="Page encore non implémentée"
-      text="La page que vous cherchez n'a pas encore été implémentée. En effet, Open Collectivités est encore en phase de développement actif."
-      buttonLabel="Retourner à l'accueil"
-      v-on:button-clicked="handleClick"
-      class="rf-fi-info-fill rf-callout--scheme-soft-blue-soft"
-    />
+  <div id="opencollectivites">
+    <div class="rf-container">
+      <img
+        src="/img/undraw_work_in_progress_uhmv.svg"
+        style="float: right; width: 40%"
+        alt=""
+      />
+      <h1>Page en construction</h1>
+      <p>
+        <a href="/" class="rf-link rf-link--icon-right" target="_self"
+          >Retour à la page d’accueil</a
+        >
+        <br clear="all" />
+      </p>
+    </div>
   </div>
 </template>
 
 <script>
-import BaseCallout from "@/components/vue-gouvfr/BaseCallout.vue";
 import { mapActions } from "vuex";
 
 export default {
-  components: { BaseCallout },
+  metaInfo: {
+    title: "Page en construction",
+  },
 
   methods: {
     ...mapActions("header", ["maximizeHeader"]),
