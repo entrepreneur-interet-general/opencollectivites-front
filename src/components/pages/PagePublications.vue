@@ -121,7 +121,9 @@ export default {
     },
     updateContents() {
       return new Promise((resolve) => {
-        this.dataFilters.typedoc = this.selectedIntFilter("typedoc");
+        this.dataFilters.document_type = this.selectedIntFilter(
+          "document_type"
+        );
         this.dataFilters.topic = this.selectedIntFilter("topic");
         this.dataFilters.scope = this.selectedIntFilter("scope");
         this.listPublications({

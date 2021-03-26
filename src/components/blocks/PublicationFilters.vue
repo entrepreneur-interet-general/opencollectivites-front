@@ -1,13 +1,16 @@
 <template>
   <div class="rf-container">
     <form id="publications-header-form" class="rf-grid-row">
-      <div class="rf-col-2">
-        <router-link :to="{ path: $store.state.route.from.fullPath }">
-          <BaseButton :isSecondary="true" label="<" />
+      <p class="rf-col-1">
+        <router-link
+          :to="{ path: $store.state.route.from.fullPath }"
+          tag="button"
+          class="rf-btn rf-btn--secondary"
+          >&lt;
         </router-link>
-      </div>
+      </p>
       <BaseSelect
-        class="rf-col-4"
+        class="rf-col-2"
         title="Thématique"
         :select_data="topics"
         :defaultOption="topicsDefaultOption"
@@ -16,12 +19,21 @@
       />
       <span class="rf-col-1"></span>
       <BaseSelect
-        class="rf-col-4"
+        class="rf-col-2"
         title="Portée"
         :select_data="scopes"
         :defaultOption="scopesDefaultOption"
         queryParam="scope"
         @input="setParam('scope', $event)"
+      />
+      <span class="rf-col-1"></span>
+      <BaseSelect
+        class="rf-col-2"
+        title="Type"
+        :select_data="document_types"
+        :defaultOption="documentTypesDefaultOption"
+        queryParam="document_type"
+        @input="setParam('document_type', $event)"
       />
     </form>
   </div>
@@ -30,18 +42,17 @@
 
 <script>
 import BaseSelect from "../vue-gouvfr/BaseSelect.vue";
-import BaseButton from "../vue-gouvfr/BaseButton.vue";
 import { mapActions, mapGetters } from "vuex";
 
 export default {
   components: {
     BaseSelect,
-    BaseButton,
   },
   data() {
     return {
       topics: { label: "Thématique", options: [] },
       scopes: { label: "Portée", options: [] },
+      document_types: { label: "Type", options: [] },
       topicsDefaultOption: {
         isDisabled: false,
         isHidden: false,
@@ -52,10 +63,19 @@ export default {
         isHidden: false,
         text: "- Portée -",
       },
+      documentTypesDefaultOption: {
+        isDisabled: false,
+        isHidden: false,
+        text: "- Type de ressources -",
+      },
     };
   },
   computed: {
-    ...mapGetters("publicationsFilterLists", ["getTopics", "getScopes"]),
+    ...mapGetters("publicationsFilterLists", [
+      "getTopics",
+      "getScopes",
+      "getDocumentTypes",
+    ]),
   },
   methods: {
     ...mapActions("header", ["minimizeHeader"]),
@@ -106,6 +126,13 @@ export default {
           this.scopes.options.push({
             text: scope.name,
             value: scope.id,
+          });
+        }
+
+        for (var document_type of this.getDocumentTypes) {
+          this.document_types.options.push({
+            text: document_type.name,
+            value: document_type.id,
           });
         }
       });

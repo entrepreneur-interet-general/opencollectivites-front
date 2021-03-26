@@ -29,6 +29,7 @@ export default {
                         console.log("📜 Fetching publications...")
                         const pubData = response.data;
                         const data = { filters: filters, publications: pubData }
+                        console.log(data)
                         commit('setItem', { resource: 'publications', id: id, item: data }, { root: true })
                         resolve(state.items[id])
                     })
