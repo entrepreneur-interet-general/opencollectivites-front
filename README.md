@@ -1,4 +1,7 @@
 # opencollectivites-front
+Ancien front d'Open Collectivités, compatible avec le back en version 0.5.
+
+Dépôt archivé.
 
 ## Project setup
 
